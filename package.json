@@ -1,0 +1,31 @@
+{
+  "name": "nestinn",
+  "version": "1.0.0",
+  "description": "\"NestInn: A hostel & food point hub.\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "NestInn",
+    "nodejs",
+    "express",
+    "mongodb",
+    "fullstack",
+    "backend",
+    "frontend",
+    "api",
+    "webapp",
+    "website",
+    "hostel",
+    "food-point",
+    "booking"
+  ],
+  "author": "\"Vedant Patil\"",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "mongoose": "^8.10.1"
+  }
+}
