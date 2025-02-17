@@ -45,30 +45,16 @@ const listingSchema = new Schema({
 	amenities: [
 		{
 			type: String,
-			enum: [
-				"WiFi",
-				"Laundry",
-				"Parking",
-				"Security",
-				"Mess",
-				"Hot Water",
-				"AC",
-				"Non-AC",
-				"Gym",
-			],
 		},
 	],
 
 	createdAt: { type: Date, default: Date.now },
 });
 
-// 🔥 Delete associated reviews AND images on listing deletion
 listingSchema.post("findOneAndDelete", async (listing) => {
 	if (listing) {
-		// Delete all associated reviews
 		await Review.deleteMany({ _id: { $in: listing.reviews } });
 
-		// Delete images from Cloudinary
 		if (listing.images.length) {
 			for (let img of listing.images) {
 				await cloudinary.uploader.destroy(img.filename);
