@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
-module.exports.listingSchema = Joi.object({
-	listing: Joi.object({
+module.exports.hostelSchema = Joi.object({
+	hostel: Joi.object({
 		title: Joi.string().required(),
 		description: Joi.string().required(),
 

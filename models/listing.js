@@ -3,7 +3,7 @@ const Review = require("./review");
 const Schema = mongoose.Schema;
 const { cloudinary } = require("../config/cloudinary");
 
-const listingSchema = new Schema({
+const hostelSchema = new Schema({
 	title: { type: String, required: true, trim: true },
 	description: { type: String, required: true },
 
@@ -51,17 +51,17 @@ const listingSchema = new Schema({
 	createdAt: { type: Date, default: Date.now },
 });
 
-listingSchema.post("findOneAndDelete", async (listing) => {
-	if (listing) {
-		await Review.deleteMany({ _id: { $in: listing.reviews } });
+hostelSchema.post("findOneAndDelete", async (hostel) => {
+	if (hostel) {
+		await Review.deleteMany({ _id: { $in: hostel.reviews } });
 
-		if (listing.images.length) {
-			for (let img of listing.images) {
+		if (hostel.images.length) {
+			for (let img of hostel.images) {
 				await cloudinary.uploader.destroy(img.filename);
 			}
 		}
 	}
 });
 
-const Listing = mongoose.model("Listing", listingSchema);
-module.exports = Listing;
+const Hostel = mongoose.model("Hostel", hostelSchema);
+module.exports = Hostel;
