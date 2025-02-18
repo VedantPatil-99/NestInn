@@ -49,7 +49,7 @@ app.get("/", (req, res) => {
 
 // Session Configuration
 const sessionOptions = {
-	secret: "mysupersecretcode",
+	secret: "mysuperdupersecretcode",
 	resave: false,
 	saveUninitialized: true,
 	cookie: {
