@@ -1,0 +1,63 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<!-- Search Bar -->
+<%- include('../includes/searchBar.ejs') %>
+
+<!-- Filters -->
+<div class="m-0 filters-bar py-3 shadow-sm">
+	<%- include("../includes/filters.ejs") %>
+</div>
+
+<!-- Hostels Grid -->
+<div
+	class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1"
+>
+	<% for (let hostel of allHostels) { %>
+	<div class="col mb-4">
+		<div class="card h-100 bg-light">
+			<!-- Image with link -->
+			<a href="/hostels/<%= hostel._id %>">
+				<img
+					src="<%= hostel.images.length ? hostel.images[0].url : '/icons/default.jpg' %>"
+					class="card-img-top"
+					alt="hostel_image"
+				/>
+			</a>
+
+			<!-- Card Body -->
+			<div class="card-body h-auto p-0">
+				<p class="card-text">
+					<span class="card-title">
+						<%= hostel.address.city %>, <%= hostel.address.country %>
+					</span>
+					<br />
+					<span class="card-text text-muted">
+						<span class="random-km">Loading km...</span><br />
+						<span class="nights toHide">Loading</span>
+						<span class="random-date">Loading date...</span>
+					</span>
+				</p>
+
+				<!-- Price -->
+				<p class="oldPrice pt-2">
+					<b>&#8377;</b>&nbsp;
+					<span class="price"><%= hostel.price.toLocaleString("en-IN") %></span>
+					<span> night</span>
+				</p>
+
+				<p class="text-decoration-underline pt-2 newPrice toHide">
+					<b>&#8377;</b>&nbsp;
+					<span class="priceNtax toHide">
+						<%= hostel.price.toLocaleString("en-IN") %>
+					</span>
+					<span>total before taxes</span>
+				</p>
+			</div>
+		</div>
+	</div>
+	<% } %>
+</div>
+
+<!-- Scripts -->
+<script src="/js/randomDays.js"></script>
+<script src="/js/filters.js"></script>
