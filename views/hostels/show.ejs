@@ -1,0 +1,71 @@
+<% layout("/layouts/boilerplate") %>
+
+<script>
+	let mapToken = "<%= process.env.MAP_TOKEN %>";
+	let hostel = <%- JSON.stringify(hostel) %>;
+</script>
+
+<!-- Spacing -->
+<div class="my-5"></div>
+
+<!-- Hostel Container -->
+<div class="container-lg">
+	<div class="row">
+		<!-- Title -->
+		<h3 class="my-4"><%= hostel.title %></h3>
+
+		<!-- Image Carousel -->
+		<div
+			id="imageCarousel"
+			class="carousel slide shadow rounded"
+			data-bs-ride="carousel"
+		>
+			<div class="carousel-inner">
+				<% hostel.images.forEach((img, index) => { %>
+				<div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+					<img
+						src="<%= img.url %>"
+						class="d-block w-100 rounded"
+						alt="Hostel Image"
+					/>
+				</div>
+				<% }); %>
+			</div>
+			<button
+				class="carousel-control-prev"
+				type="button"
+				data-bs-target="#imageCarousel"
+				data-bs-slide="prev"
+			>
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			</button>
+			<button
+				class="carousel-control-next"
+				type="button"
+				data-bs-target="#imageCarousel"
+				data-bs-slide="next"
+			>
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			</button>
+		</div>
+
+		<!-- Hostel Details -->
+		<%- include("../includes/showDetails.ejs") %>
+
+		<!-- Reviews -->
+		<div class="mt-4">
+			<%- include("../includes/addReviews.ejs") %>
+			<br />
+			<%- include("../includes/allReviews.ejs") %>
+		</div>
+	</div>
+</div>
+
+<!-- Map Section -->
+<div class="container-lg border-top py-4">
+	<h4 class="mt-2">Where You'll Be</h4>
+	<div id="map" class="mt-4 shadow-sm rounded-4"></div>
+</div>
+
+<!-- JS for Map -->
+<script src="../js/map.js"></script>
