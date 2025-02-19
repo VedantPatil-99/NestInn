@@ -13,7 +13,7 @@ router
 	.get(wrapAsync(hostelController.index))
 	.post(
 		isLoggedIn,
-		upload.array("hostel[images]", 5),
+		upload.array("images", 5),
 		validateHostel,
 		wrapAsync(hostelController.createHostel),
 	);

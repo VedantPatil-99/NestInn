@@ -11,7 +11,7 @@ const hostelSchema = new Schema({
 		city: { type: String, required: true },
 		state: { type: String, required: true },
 		country: { type: String, required: true },
-		zipCode: { type: String, required: true },
+		pinCode: { type: String, required: true },
 	},
 
 	price: { type: Number, required: true, min: 0 },

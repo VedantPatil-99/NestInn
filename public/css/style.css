@@ -144,3 +144,10 @@ nav {
 .btn-check:checked + .btn svg {
 	fill: white !important;
 }
+
+.step {
+	display: none;
+}
+.active-step {
+	display: block;
+}
