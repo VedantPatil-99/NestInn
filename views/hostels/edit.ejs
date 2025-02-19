@@ -1,0 +1,167 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container my-5">
+	<div class="row justify-content-center">
+		<div class="col-lg-8 col-md-10">
+			<h4 class="pb-2">Edit Your Hostel</h4>
+
+			<form
+				action="/hostels/<%= hostel._id %>?_method=PUT"
+				method="POST"
+				class="needs-validation p-4 shadow-sm bg-light rounded"
+				enctype="multipart/form-data"
+				id="editHostelForm"
+			>
+				<!-- Title -->
+				<div class="mb-3">
+					<label for="title" class="form-label">Title:</label>
+					<input
+						type="text"
+						name="hostel[title]"
+						id="title"
+						value="<%= hostel.title %>"
+						class="form-control"
+						required
+					/>
+				</div>
+
+				<!-- Description -->
+				<div class="mb-3">
+					<label for="description" class="form-label">Description:</label>
+					<textarea
+						name="hostel[description]"
+						id="description"
+						class="form-control"
+						rows="3"
+						required
+					>
+<%= hostel.description %></textarea
+					>
+				</div>
+
+				<!-- Image Upload -->
+				<div class="mb-3">
+					<label class="form-label">Current Images:</label>
+					<div class="d-flex flex-wrap gap-2">
+						<% hostel.images.forEach((img, index) => { %>
+						<div class="position-relative">
+							<img src="<%= img.url %>" class="img-thumbnail" width="100" />
+							<input
+								type="checkbox"
+								name="deleteImages[]"
+								value="<%= img.filename %>"
+							/>
+							Remove
+						</div>
+						<% }); %>
+					</div>
+				</div>
+
+				<div class="mb-3">
+					<label for="images" class="form-label">Upload New Images:</label>
+					<input
+						type="file"
+						name="hostel[images]"
+						id="images"
+						class="form-control"
+						multiple
+					/>
+				</div>
+
+				<!-- Include Modal (Unchanged) -->
+				<%- include ("../includes/modalBox/modal.ejs") %>
+
+				<!-- Price & Location -->
+				<div class="row">
+					<div class="mb-3 col-md-4">
+						<label for="price" class="form-label">Price:</label>
+						<input
+							type="number"
+							name="hostel[price]"
+							id="price"
+							value="<%= hostel.price %>"
+							class="form-control"
+							required
+						/>
+					</div>
+
+					<div class="mb-3 col-md-8">
+						<label for="location" class="form-label">Location:</label>
+						<input
+							type="text"
+							name="hostel[location]"
+							id="location"
+							value="<%= hostel.location %>"
+							class="form-control"
+							required
+						/>
+					</div>
+				</div>
+
+				<!-- Country -->
+				<div class="mb-3">
+					<label for="country" class="form-label">Country:</label>
+					<input
+						type="text"
+						name="hostel[country]"
+						id="country"
+						value="<%= hostel.country %>"
+						class="form-control"
+						required
+					/>
+				</div>
+
+				<!-- Save Changes Button (Triggers Modal) -->
+				<div class="d-grid">
+					<button
+						type="button"
+						class="btn btn-dark"
+						data-bs-toggle="modal"
+						data-bs-target="#confirmModal"
+					>
+						Save Changes
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- Confirmation Modal -->
+<div
+	class="modal fade"
+	id="confirmModal"
+	tabindex="-1"
+	aria-labelledby="confirmModalLabel"
+	aria-hidden="true"
+>
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="confirmModalLabel">Confirm Changes</h5>
+				<button
+					type="button"
+					class="btn-close"
+					data-bs-dismiss="modal"
+					aria-label="Close"
+				></button>
+			</div>
+			<div class="modal-body">Are you sure you want to save these changes?</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+					Cancel
+				</button>
+				<button type="submit" class="btn btn-success" id="confirmSave">
+					Yes, Save
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- JavaScript for Handling Form Submission -->
+<script>
+	document.getElementById("confirmSave").addEventListener("click", function () {
+		document.getElementById("editHostelForm").submit();
+	});
+</script>
