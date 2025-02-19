@@ -1,0 +1,134 @@
+<div class="show-details row">
+	<div class="left-side col-lg-7">
+		<div class="main-details h-auto py-4">
+			<p class="card-text fw-medium m-0">Owned by: <i></i></p>
+			<h4 class="card-title m-0 pb-1">
+				Room in <%= hostel.location %>, <%= hostel.country %>
+			</h4>
+			<h6 class="main-amenities">
+				<span class="capacity">5 </span> guests ·
+				<span class="bedrooms">5 </span> bedrooms ·
+				<span class="beds">5 </span> beds ·
+				<span class="bathrooms">5 </span> bathrooms
+			</h6>
+			<div class="reviews-overview">
+				<b><i class="fa-solid fa-star"></i> 4.95 </b> <b class="dot">· </b>
+				<b class="total-reviews text-decoration-underline">20 reviews</b>
+			</div>
+		</div>
+
+		<div class="host-overview d-flex gap-4 py-4 border-top border-bottom">
+			<img
+				src="../icons/filterIcons/Naruto.jpg"
+				alt="host-dp"
+				class="rounded-circle h-25 host-overview-dp"
+			/>
+			<div class="host-overview-info">
+				<p class="host-name m-0">Hosted by <%= hostel.owner.username %></p>
+				<p class="host-expnc m-0 text-secondary">
+					Superhost <span class="dot text-secondary">·</span> 12 years hosting
+				</p>
+			</div>
+		</div>
+
+		<!-- Main Amenities -->
+		<div class="main-amenities py-4 d-flex flex-column gap-4 border-bottom">
+			<div class="first-amnt d-flex gap-4">
+				<div class="firepit amnt-svg"></div>
+				<div class="amnt-info">
+					<p class="head-amnt-info m-0">Outdoor entertainment</p>
+					<p class="sub-amnt-info m-0 text-secondary">
+						The firepit, alfresco dining, BBQ area and outdoor seating are great
+						for summer trips
+					</p>
+				</div>
+			</div>
+			<div class="second-amnt d-flex gap-4">
+				<div class="locMarker amnt-svg"></div>
+				<div class="amnt-info">
+					<p class="head-amnt-info m-0">Peace and quiet</p>
+					<p class="sub-amnt-info m-0 text-secondary">
+						Guests say this home is in a quiet area.
+					</p>
+				</div>
+			</div>
+			<div class="third-amnt d-flex gap-4">
+				<div class="calendar amnt-svg"></div>
+				<div class="amnt-info">
+					<p class="head-amnt-info m-0">Free cancellation before 30 Jun</p>
+					<p class="sub-amnt-info m-0 text-secondary">
+						Get a full refund if you change your mind.
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Hostel Description -->
+		<div class="show-desc py-4 border-bottom">
+			<p class="s-desc">
+				The treehouse is nestled in the Himalayan subtropical pine forests...
+			</p>
+			<a
+				class="icon-link link-underline-dark"
+				href="#description-modal"
+				data-bs-toggle="modal"
+				data-bs-target="#description-modal"
+			>
+				<span class="show-f-desc">Show more</span>
+				<span><i class="fa-solid fa-chevron-right"></i></span>
+			</a>
+		</div>
+
+		<!-- Amenities -->
+		<div class="place-offers py-4 border-bottom">
+			<h4 class="mb-3">What this place offers:</h4>
+			<ul class="list-unstyled d-flex flex-wrap mb-0">
+				<% let count = 0; %> <% for (const category in amenities) { %> <% const
+				categoryAmenities = hostel.amenities.filter(a =>
+				amenities[category].some(am => am.name === a)); %> <% if
+				(categoryAmenities.length > 0) { %> <% categoryAmenities.forEach(amenity
+				=> { %> <% if (count < 10) { %>
+				<li class="d-flex align-items-center p-2 col-md-6 col-12 my-1">
+					<span class="me-4">
+						<%- amenities[category].find(am => am.name === amenity).icon %>
+					</span>
+					<span class="s-desc"><%= amenity %></span>
+				</li>
+				<% } %> <% count++; %> <% }); %> <% } %> <% } %>
+				<button
+					type="button"
+					class="btn btn-outline-dark mt-4 s-desc col-xl-4 col-sm-6 col-12 p-2 amnt-btn"
+					data-bs-toggle="modal"
+					data-bs-target="#show-amenities-modal"
+				>
+					Show all amenities
+				</button>
+			</ul>
+		</div>
+
+		<!-- Edit/Delete Buttons for Owner -->
+		<% if (currUser && currUser._id.equals(hostel.owner._id)) { %>
+		<div class="btns d-flex mt-4">
+			<a href="/hostels/<%= hostel._id %>/edit" class="btn btn-dark">Edit</a>
+			<form action="/hostels/<%= hostel._id %>?_method=DELETE" method="post">
+				<button class="btn btn-danger offset-3">Delete</button>
+			</form>
+		</div>
+		<% } %>
+	</div>
+
+	<!-- Right Side Price -->
+	<div class="right-side col-lg-4 py-4">
+		<p class="price pt-2">
+			&#8377;&nbsp;<%= hostel.price.toLocaleString("en-IN") %>
+			<span> night </span>
+		</p>
+	</div>
+</div>
+
+<!-- Show Description Modal -->
+<%- include("../includes/modalBox/showDescM.ejs") %>
+<!-- Show Amenities Modal -->
+<%- include("../includes/modalBox/showAmenitiesM.ejs") %>
+
+<script src="../js/amenities.js"></script>
