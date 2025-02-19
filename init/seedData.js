@@ -89,7 +89,11 @@ const sampleHostels = [
 
 const seedDB = async () => {
 	await Hostel.deleteMany({});
-	await Hostel.insertMany(sampleHostels);
+	newSampleHostels = sampleHostels.map((obj) => ({
+		...obj,
+		owner: "67b60d5d35bc020be52e222f",
+	}));
+	await Hostel.insertMany(newSampleHostels);
 	console.log("Database Seeded!");
 	mongoose.connection.close();
 };

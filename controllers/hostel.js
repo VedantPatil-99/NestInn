@@ -17,19 +17,19 @@ module.exports.renderNewHostelForm = (req, res) => {
 	res.render("./hostels/new.ejs", { amenities });
 };
 
-module.exports.showHostel = wrapAsync(async (req, res) => {
+module.exports.showHostel = async (req, res) => {
 	let { id } = req.params;
 	let hostel = await Hostel.findById(id)
 		.populate({ path: "reviews", populate: { path: "author" } })
 		.populate("owner");
-
+	console.log(hostel);
 	if (!hostel) {
 		req.flash("error", "Hostel not found!");
 		return res.redirect("/hostels");
 	}
 
 	res.render("./hostels/show.ejs", { hostel, amenities, allSVGs });
-});
+};
 
 module.exports.createHostel = wrapAsync(async (req, res) => {
 	let fullAddress = `${req.body.hostel.address.street}, ${req.body.hostel.address.city}, ${req.body.hostel.address.state}, ${req.body.hostel.address.country}`;
