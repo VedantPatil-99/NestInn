@@ -91,6 +91,7 @@ app.all("*", (req, res, next) => {
 
 // Global Error Handler
 app.use((err, req, res, next) => {
+	console.log(err);
 	let { statusCode = 500, message = "Something Went Wrong!" } = err;
 	res.status(statusCode).render("error.ejs", { message });
 });

@@ -8,10 +8,10 @@ const wrapAsync = require("../utils/wrapAsync"); // Error handling wrapper
 const mapToken = process.env.MAP_TOKEN;
 const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
-module.exports.index = wrapAsync(async (req, res) => {
+module.exports.index = async (req, res) => {
 	let allHostels = await Hostel.find({});
 	res.render("./hostels/index.ejs", { allHostels });
-});
+};
 
 module.exports.renderNewHostelForm = (req, res) => {
 	res.render("./hostels/new.ejs", { amenities });

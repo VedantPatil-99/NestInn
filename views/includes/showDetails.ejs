@@ -1,7 +1,6 @@
 <div class="show-details row">
 	<div class="left-side col-lg-7">
 		<div class="main-details h-auto py-4">
-			<p class="card-text fw-medium m-0">Owned by: <i></i></p>
 			<h4 class="card-title m-0 pb-1">
 				Room in <%= hostel.location %>, <%= hostel.country %>
 			</h4>
@@ -83,11 +82,18 @@
 		<div class="place-offers py-4 border-bottom">
 			<h4 class="mb-3">What this place offers:</h4>
 			<ul class="list-unstyled d-flex flex-wrap mb-0">
-				<% let count = 0; %> <% for (const category in amenities) { %> <% const
-				categoryAmenities = hostel.amenities.filter(a =>
-				amenities[category].some(am => am.name === a)); %> <% if
-				(categoryAmenities.length > 0) { %> <% categoryAmenities.forEach(amenity
-				=> { %> <% if (count < 10) { %>
+				<% let count = 0; %>
+				<!--  -->
+				<% for (const category in amenities) { %>
+				<!--  -->
+				<% const categoryAmenities = hostel.amenities.filter(a =>
+				amenities[category].some(am => am.name === a)); %>
+				<!--  -->
+				<% if (categoryAmenities.length > 0) { %>
+				<!--  -->
+				<% categoryAmenities.forEach(amenity => { %>
+				<!--  -->
+				<% if (count < 10) { %>
 				<li class="d-flex align-items-center p-2 col-md-6 col-12 my-1">
 					<span class="me-4">
 						<%- amenities[category].find(am => am.name === amenity).icon %>

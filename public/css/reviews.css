@@ -1,0 +1,34 @@
+.r-subtitle {
+	font-size: small;
+}
+
+.r-comment {
+	display: -webkit-box;
+	line-clamp: 3;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.r-comment {
+	font-size: 1rem;
+	font-weight: 460;
+	line-height: 1.4;
+}
+
+.r-date {
+	font-weight: 560;
+	font-size: 0.9rem;
+}
+
+.r-title,
+.r-link {
+	font-size: 1rem;
+	font-weight: 650;
+}
+
+.custom-popover {
+	--bs-popover-max-width: 300px;
+	--bs-popover-bg: rgb(34, 34, 34);
+	--bs-popover-body-color: white;
+}

@@ -1,0 +1,146 @@
+* {
+	font-family: "Plus Jakarta Sans", serif;
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 0.93rem;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.container-fluid {
+	padding-inline: 40px;
+}
+
+/* NAVBAR - includes/navbar.ejs */
+
+nav {
+	height: 5.4rem;
+}
+
+.nav-link:hover {
+	background-color: #dddddd; /*  #f8f9fa #e9ecef */
+}
+
+.fa-sm,
+.fa,
+.fa-brands,
+.fa-regular,
+.fa-solid,
+.fab,
+.far,
+.fas {
+	line-height: 2;
+}
+
+.stays,
+.exps {
+	font-size: medium;
+}
+
+.nav-ends {
+	font-size: 1rem;
+	font-weight: 500 !important;
+}
+
+.nav-link.dropdown-toggle::after {
+	display: none; /* Hides the caret */
+}
+
+.nav-link.active {
+	font-weight: 600 !important;
+}
+
+/* Search Bar */
+
+.search-bar {
+	transform: translateY(0);
+	transition: transform 0.3s ease-in-out;
+}
+
+.search-bar.scrolled {
+	transform: translateY(-200%);
+}
+
+.btn-group .btn:hover {
+	background-color: #dddddd;
+	font-size: initial;
+}
+
+.search-icon:hover {
+	background-color: #ff385c !important;
+}
+
+.btn-outline-secondary {
+	border: none;
+}
+
+.search-title {
+	font-size: 0.82rem;
+	font-weight: 500;
+}
+
+.search-content {
+	display: flex;
+	justify-content: start;
+	flex-direction: column;
+	width: auto;
+	text-align: start;
+}
+
+.dropdown-menu {
+	min-width: 15rem;
+}
+
+/* CARDS - listings/index.js */
+
+.card {
+	border: none;
+	text-decoration: none;
+	color: #222222;
+	/* margin-bottom: 2rem; */
+	/* height: 24.2rem; */
+}
+
+.card:hover {
+	text-decoration: none;
+	color: #222222;
+}
+
+.card .card-img-top {
+	border-radius: 0.8rem;
+	height: 19rem;
+	object-fit: cover;
+	vertical-align: middle;
+}
+
+.card-body {
+	height: 5rem;
+	font-size: 0.85rem;
+}
+
+.card-title {
+	font-weight: 600;
+}
+
+.card-text {
+	margin: 0.6rem 0 0 0;
+	line-height: 1.4rem;
+}
+
+.price,
+.priceNtax {
+	font-weight: 700;
+}
+
+.show-img {
+	height: 22rem !important;
+}
+
+.btn-check:checked + .btn svg {
+	fill: white !important;
+}

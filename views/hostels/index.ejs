@@ -4,9 +4,9 @@
 <%# include('../includes/searchBar.ejs') %>
 
 <!-- Filters -->
-<div class="m-0 filters-bar py-3 shadow-sm">
+<!-- <div class="m-0 filters-bar py-3 shadow-sm">
 	<%# include("../includes/filters.ejs") %>
-</div>
+</div> -->
 
 <!-- Hostels Grid -->
 <div
@@ -18,7 +18,7 @@
 			<!-- Image with link -->
 			<a href="/hostels/<%= hostel._id %>">
 				<img
-					src="<%= hostel.images.length ? hostel.images[0].url : '/icons/default.jpg' %>"
+					src="<%# hostel.images.length ? hostel.images[0].url : '/icons/default.jpg' %>"
 					class="card-img-top"
 					alt="hostel_image"
 				/>
@@ -47,9 +47,7 @@
 
 				<p class="text-decoration-underline pt-2 newPrice toHide">
 					<b>&#8377;</b>&nbsp;
-					<span class="priceNtax toHide">
-						<%= hostel.price.toLocaleString("en-IN") %>
-					</span>
+					<span class="priceNtax toHide"> <%= hostel.price %> </span>
 					<span>total before taxes</span>
 				</p>
 			</div>
@@ -60,4 +58,4 @@
 
 <!-- Scripts -->
 <script src="../js/randomDays.js"></script>
-<script src="../js/filters.js"></script>
+<!-- <script src="../js/filters.js"></script> -->
