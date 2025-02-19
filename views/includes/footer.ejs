@@ -1,0 +1,47 @@
+<footer
+	class="d-flex flex-column flex-md-row justify-content-between align-items-center py-3 border-top bg-light"
+>
+	<!-- Left Side: Copyright & Links -->
+	<div class="d-flex flex-column flex-md-row align-items-center">
+		<span class="copyright">&copy; 2025 Airbnb, Inc.</span>
+		<ul class="f-links nav d-flex flex-wrap align-items-center ms-md-3">
+			<li><span class="dot">· </span><a href="#"> Privacy</a></li>
+			<li><span class="dot">· </span><a href="#"> Terms</a></li>
+			<li><span class="dot">· </span><a href="#"> Sitemap</a></li>
+			<li><span class="dot">· </span><a href="#"> Company details</a></li>
+		</ul>
+	</div>
+
+	<!-- Right Side: Language, Currency & Socials -->
+	<div class="d-flex flex-column flex-md-row align-items-center mt-2 mt-md-0">
+		<div class="d-flex align-items-center">
+			<div class="me-3" data-bs-toggle="modal" data-bs-target="#language-modal">
+				<i class="fa-solid fa-globe me-1"></i> English (IN)
+			</div>
+			<a
+				class="icon-link ms-auto"
+				href="#"
+				data-bs-toggle="modal"
+				data-bs-target="#currency-modal"
+			>
+				<span class="currency">₹ INR</span>
+			</a>
+		</div>
+		<div class="f-info-socials d-flex mt-2 mt-md-0 ms-md-4">
+			<a href="https://www.facebook.com/AirbnbIndia"
+				><i class="fa-brands fa-facebook fa-lg"></i
+			></a>
+			<a href="https://x.com/airbnb_in" class="ms-3"
+				><i class="fa-brands fa-x-twitter fa-lg"></i
+			></a>
+			<a href="https://www.instagram.com/airbnb/" class="ms-3"
+				><i class="fa-brands fa-instagram fa-lg"></i
+			></a>
+		</div>
+	</div>
+</footer>
+
+<!-- Currency modal -->
+<%- include("../includes/modalBox/currencyM.ejs") %>
+<!-- Language modal -->
+<%- include("../includes/modalBox/langM.ejs") %>
