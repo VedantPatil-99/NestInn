@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 const Review = require("./review");
 const Schema = mongoose.Schema;
-const { cloudinary } = require("../config/cloudinary");
-
+const { cloudinary } = require("../cloudConfig.js");
 const hostelSchema = new Schema({
 	title: { type: String, required: true, trim: true },
 	description: { type: String, required: true },
