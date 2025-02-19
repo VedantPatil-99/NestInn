@@ -1,8 +1,8 @@
 const Hostel = require("../models/hostel");
-const amenities = require("../utils/amenities");
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const allSVGs = require("../utils/SVGs");
-const { cloudinary } = require("../config/cloudinary");
+const amenities = require("../utils/amenities");
+const cloudinary = require("cloudinary").v2;
 const wrapAsync = require("../utils/wrapAsync"); // Error handling wrapper
 
 const mapToken = process.env.MAP_TOKEN;
