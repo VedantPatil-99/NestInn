@@ -53,6 +53,21 @@ module.exports.isReviewAuthor = async (req, res, next) => {
 
 // Middleware to validate hostel data
 module.exports.validateHostel = (req, res, next) => {
+	if (!req.body.hostel) {
+		req.body.hostel = {};
+	}
+	
+	if (req.files && req.files.length > 0) {
+		req.body.hostel.images = req.files.map((file) => ({
+			url: file.path,
+			filename: file.filename,
+		}));
+	}
+
+	if (!req.body.hostel.owner && req.user && req.user._id) {
+		req.body.hostel.owner = req.user;
+	}
+
 	let { error } = hostelSchema.validate(req.body);
 	if (error) {
 		let errMsg = error.details.map((ele) => ele.message).join(",");

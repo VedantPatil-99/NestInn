@@ -10,7 +10,7 @@ module.exports.hostelSchema = Joi.object({
 			city: Joi.string().required(),
 			state: Joi.string().required(),
 			country: Joi.string().required(),
-			zipCode: Joi.string().required(),
+			pinCode: Joi.string().required(),
 		}).required(),
 
 		price: Joi.number().required().min(0),
@@ -25,13 +25,7 @@ module.exports.hostelSchema = Joi.object({
 			.min(1)
 			.required(),
 
-		owner: Joi.string().required(), // Owner must exist
-
-		geometry: Joi.object({
-			type: Joi.string().valid("Point").required(),
-			coordinates: Joi.array().items(Joi.number()).length(2).required(),
-		}).required(),
-
+		owner: Joi.object().required(), // Owner must exist
 		amenities: Joi.array().items(Joi.string()).optional(),
 	}).required(),
 });

@@ -42,7 +42,6 @@ module.exports.createHostel = async (req, res) => {
 	let newHostel = new Hostel(req.body.hostel);
 	newHostel.owner = req.user._id;
 	newHostel.geometry = response.body.features[0].geometry;
-	console.log(req.files); // ✅ Check uploaded images in the terminal
 
 	if (req.files) {
 		newHostel.images = req.files.map((file) => ({

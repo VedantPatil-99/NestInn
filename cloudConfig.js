@@ -12,7 +12,7 @@ const storage = new CloudinaryStorage({
 	params: {
 		folder: "NestInn_Images",
 		allowedFormats: ["png", "jpg", "jpeg"],
-		transformation: [{ width: 800, height: 600, crop: "limit" }], // resizing
+		// transformation: [{ width: 800, height: 600, crop: "limit" }], // resizing
 	},
 });
 

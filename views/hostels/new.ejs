@@ -87,11 +87,11 @@
 						/>
 					</div>
 					<div class="mb-3 col-md-4">
-						<label for="zipCode" class="form-label">Zip Code:</label>
+						<label for="pinCode" class="form-label">Pin Code:</label>
 						<input
 							type="text"
-							name="hostel[address][zipCode]"
-							id="zipCode"
+							name="hostel[address][pinCode]"
+							id="pinCode"
 							class="form-control"
 							required
 						/>
@@ -116,7 +116,7 @@
 			<fieldset class="step">
 				<legend>Step 3: Upload Images</legend>
 				<div class="mb-3">
-					<label for="images" class="form-label">Upload Images:</label>
+					<label for="images" class="form-label">Upload New Images:</label>
 					<input
 						type="file"
 						class="form-control"
@@ -124,9 +124,10 @@
 						id="images"
 						multiple
 						accept="image/*"
-						required
 					/>
-					<small class="text-muted">You can upload multiple images.</small>
+					<small class="text-muted"
+						>Uploading new images will not remove old ones.</small
+					>
 				</div>
 				<button type="button" class="btn btn-secondary prev-step">Back</button>
 				<button type="button" class="btn btn-primary next-step">Next</button>
