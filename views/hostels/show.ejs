@@ -13,12 +13,12 @@
 		<!-- Image Carousel -->
 		<div
 			id="imageCarousel"
-			class="carousel slide shadow rounded"
+			class="carousel slide shadow rounded p-0"
 			data-bs-ride="carousel"
 		>
 			<div class="carousel-inner">
-				<% hostel.images.forEach((img, index) => { %>
-				<div class="carousel-item <%- index === 0 ? 'active' : '' %>">
+				<% hostel.images.forEach((img, idx) => { %>
+				<div class="carousel-item <%- idx === 0 ? 'active' : '' %>">
 					<img
 						src="<%= img.url %>"
 						class="d-block w-100 rounded"
