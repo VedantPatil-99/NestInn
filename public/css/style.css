@@ -140,7 +140,16 @@ nav {
 }
 
 .show-img {
-	height: 22rem !important;
+	height: 25rem !important;
+}
+
+.carousel-item {
+	height: 25rem !important;
+}
+
+.carousel-item img {
+	height: 25rem !important;
+	object-fit: cover;
 }
 
 .btn-check:checked + .btn svg {
