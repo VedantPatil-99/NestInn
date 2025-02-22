@@ -36,14 +36,20 @@
 						<span class="s-rated d-flex w-auto"><%= review.rating %></span>
 						<span class="dot px-1">·</span>
 						<span class="r-date"
-							><%= new Date(review.createdAt).toDateString() %></span
-						>
+							><%= new Date(review.createdAt).toDateString() %>
+						</span>
 					</p>
 				</div>
 				<p class="card-text r-comment mb-2 mt-0"><%= review.comment %></p>
 
 				<div class="row row-cols-lg-3">
-					<a href="#" class="card-link r-link link-dark">Show More</a>
+					<a
+						class="card-link r-link link-dark"
+						data-bs-toggle="modal"
+						data-bs-target="#reviews-modal"
+					>
+						Show More
+					</a>
 					<% if (currUser) { %>
 					<form
 						action="/hostels/<%= hostel._id %>/reviews/<%= review._id %>?_method=DELETE"
