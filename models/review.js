@@ -26,7 +26,7 @@ const reviewSchema = new Schema({
 	},
 	listing: {
 		type: Schema.Types.ObjectId,
-		ref: "Listing",
+		ref: "Hostel",
 		required: true,
 	},
 });

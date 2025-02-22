@@ -18,7 +18,7 @@
 			<!-- Image with link -->
 			<a href="/hostels/<%= hostel._id %>">
 				<img
-					src="<%# hostel.images.length ? hostel.images[0].url : '/icons/default.jpg' %>"
+					src="<%= hostel.images.length ? hostel.images[0].url : '/icons/default.jpg' %>"
 					class="card-img-top"
 					alt="hostel_image"
 				/>
@@ -45,11 +45,11 @@
 					<span> night</span>
 				</p>
 
-				<p class="text-decoration-underline pt-2 newPrice toHide">
+				<!-- <p class="text-decoration-underline pt-2 newPrice toHide">
 					<b>&#8377;</b>&nbsp;
 					<span class="priceNtax toHide"> <%= hostel.price %> </span>
 					<span>total before taxes</span>
-				</p>
+				</p> -->
 			</div>
 		</div>
 	</div>

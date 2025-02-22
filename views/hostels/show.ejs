@@ -4,10 +4,6 @@
 	let mapToken = "<%= process.env.MAP_TOKEN %>";
 	let hostel = <%- JSON.stringify(hostel) %>;
 </script>
-
-<!-- Spacing -->
-<div class="my-5"></div>
-
 <!-- Hostel Container -->
 <div class="container-lg">
 	<div class="row">
@@ -21,15 +17,15 @@
 			data-bs-ride="carousel"
 		>
 			<div class="carousel-inner">
-				<%# hostel.images.forEach((img, index) => { %>
-				<div class="carousel-item <%# index === 0 ? 'active' : '' %>">
+				<% hostel.images.forEach((img, index) => { %>
+				<div class="carousel-item <%- index === 0 ? 'active' : '' %>">
 					<img
-						src="<%#= img.url %>"
+						src="<%= img.url %>"
 						class="d-block w-100 rounded"
 						alt="Hostel Image"
 					/>
 				</div>
-				<%# }); %>
+				<% }); %>
 			</div>
 			<button
 				class="carousel-control-prev"
