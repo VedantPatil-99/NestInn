@@ -24,10 +24,9 @@ const reviewSchema = new Schema({
 		ref: "User",
 		required: true,
 	},
-	listing: {
+	hostel: {
 		type: Schema.Types.ObjectId,
 		ref: "Hostel",
-		required: true,
 	},
 });
 
