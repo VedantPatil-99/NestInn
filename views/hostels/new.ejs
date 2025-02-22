@@ -1,7 +1,7 @@
 <% layout("/layouts/boilerplate") %>
 
-<div class="container mt-4">
-	<h4>Create a New Hostel Listing</h4>
+<div class="container my-4">
+	<h4 class="fw-bolder mb-2">Create a New Hostel Listing</h4>
 	<form
 		action="/hostels"
 		method="POST"
@@ -31,6 +31,7 @@
 						name="hostel[description]"
 						id="description"
 						class="form-control"
+						rows="5"
 						required
 					></textarea>
 				</div>
