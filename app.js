@@ -42,7 +42,6 @@ async function main() {
 	await mongoose.connect(MONGO_URL);
 }
 
-// Redirect to hostels instead of listings
 app.get("/", (req, res) => {
 	res.redirect("/hostels");
 });

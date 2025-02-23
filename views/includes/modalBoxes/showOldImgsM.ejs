@@ -31,11 +31,23 @@
 					></button>
 				</div>
 				<div class="modal-body">
-					<img
-						src="<%= hostel.images[0].url %>"
-						alt="hostel-image"
-						class="card-img-top"
-					/>
+					<!-- Image Upload -->
+					<div class="mb-3">
+						<label class="form-label">Current Images:</label>
+						<div class="d-flex flex-wrap gap-2">
+							<% hostel.images.forEach((img, index) => { %>
+							<div class="position-relative">
+								<img src="<%= img.url %>" class="img w-75" />
+								<input
+									type="checkbox"
+									name="deleteImages[]"
+									value="<%= img.filename %>"
+								/>
+								Remove
+							</div>
+							<% }); %>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
