@@ -59,19 +59,21 @@
 
 	<body class="bg-light">
 		<!-- Navbar (Sticky Top) -->
-		<header class="sticky-top"><%- include('../includes/navbar.ejs') %></header>
+		<header class="sticky-top">
+			<%- include('../includes/components/navbar.ejs') %>
+		</header>
 
 		<!-- Main Content -->
 		<main class="container-fluid"><%- body %></main>
 
 		<!-- Flash Messages -->
 		<div class="container-fluid fixed-bottom">
-			<%- include('../includes/flash.ejs') %>
+			<%- include('../includes/components/flash.ejs') %>
 		</div>
 
 		<!-- Footer -->
 		<footer class="container-fluid">
-			<%- include('../includes/footer.ejs') %>
+			<%- include('../includes/components/footer.ejs') %>
 		</footer>
 
 		<!-- Bootstrap JS -->
