@@ -54,7 +54,7 @@
 				<%- include ("../includes/modalBoxes/showOldImgsM.ejs") %>
 
 				<!-- Price & Location -->
-				<div class="row">
+				<div class="row mt-3">
 					<div class="mb-3 col-md-4">
 						<label for="price" class="form-label">Price:</label>
 						<input
@@ -67,37 +67,74 @@
 						/>
 					</div>
 
+					<!-- Country -->
 					<div class="mb-3 col-md-8">
-						<label for="location" class="form-label">Location:</label>
+						<label for="country" class="form-label">Country:</label>
 						<input
 							type="text"
-							name="hostel[location]"
-							id="location"
-							value="<%= hostel.location %>"
+							name="hostel[address][country]"
+							id="country"
+							value="<%= hostel.address.country %>"
+							class="form-control"
+							required
+						/>
+					</div>
+				</div>
+				<div class="mb-3 col-md-12">
+					<label for="street" class="form-label">Street:</label>
+					<input
+						type="text"
+						name="hostel[address][street]"
+						id="street"
+						value="<%= hostel.address.street %>"
+						class="form-control"
+						required
+					/>
+				</div>
+
+				<div class="row">
+					<div class="mb-3 col-md-4">
+						<label for="city" class="form-label">City:</label>
+						<input
+							type="text"
+							name="hostel[address][city]"
+							id="city"
+							value="<%= hostel.address.city %>"
+							class="form-control"
+							required
+						/>
+					</div>
+
+					<div class="mb-3 col-md-4">
+						<label for="state" class="form-label">State:</label>
+						<input
+							type="text"
+							name="hostel[address][state]"
+							id="state"
+							value="<%= hostel.address.state %>"
+							class="form-control"
+							required
+						/>
+					</div>
+
+					<div class="mb-3 col-md-4">
+						<label for="pinCode" class="form-label">Pin Code:</label>
+						<input
+							type="number"
+							name="hostel[address][pinCode]"
+							id="pinCode"
+							value="<%= hostel.address.pinCode %>"
 							class="form-control"
 							required
 						/>
 					</div>
 				</div>
 
-				<!-- Country -->
-				<div class="mb-3">
-					<label for="country" class="form-label">Country:</label>
-					<input
-						type="text"
-						name="hostel[country]"
-						id="country"
-						value="<%= hostel.country %>"
-						class="form-control"
-						required
-					/>
-				</div>
-
 				<!-- Save Changes Button (Triggers Modal) -->
-				<div class="d-grid">
+				<div class="d-grid mt-4">
 					<button
 						type="button"
-						class="btn btn-dark"
+						class="btn btn-dark p-2"
 						data-bs-toggle="modal"
 						data-bs-target="#confirmModal"
 					>
