@@ -33,17 +33,20 @@
 				<div class="modal-body">
 					<!-- Image Upload -->
 					<div class="mb-3">
-						<label class="form-label">Current Images:</label>
-						<div class="d-flex flex-wrap gap-2">
-							<% hostel.images.forEach((img, index) => { %>
+						<h4 class="mb-4">Current Images:</h4>
+						<div class="d-flex flex-wrap gap-4">
+							<% hostel.images.forEach((img, idx) => { %>
 							<div class="position-relative">
-								<img src="<%= img.url %>" class="img w-75" />
+								<label for="img-<%= idx %>" class="form-label"
+									><img src="<%= img.url %>" class="w-100 me-4" />
+								</label>
 								<input
 									type="checkbox"
 									name="deleteImages[]"
+									id="img-<%= idx %>"
 									value="<%= img.filename %>"
 								/>
-								Remove
+								<label for="img-<%= idx %>">Remove</label>
 							</div>
 							<% }); %>
 						</div>
