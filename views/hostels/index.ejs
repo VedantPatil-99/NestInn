@@ -1,4 +1,7 @@
 <% layout("/layouts/boilerplate.ejs") %>
+<script>
+	const svgData = <%- JSON.stringify(allSVGs) %>;
+</script>
 
 <!-- Search Bar -->
 <%# include('../includes/searchBar.ejs') %>
@@ -33,7 +36,9 @@
 					<br />
 					<span class="card-text">
 						<span class="random-km text-secondary">Loading km...</span><br />
-						<span class="random-rating fw-2">Loading ratings...</span>
+						<span class="random-rating fw-bold d-flex align-items-center"
+							>Loading ratings...</span
+						>
 					</span>
 				</p>
 

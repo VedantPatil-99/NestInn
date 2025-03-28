@@ -9,7 +9,7 @@ const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
 module.exports.index = async (req, res) => {
 	let allHostels = await Hostel.find({});
-	res.render("./hostels/index.ejs", { allHostels });
+	res.render("./hostels/index.ejs", { allHostels, allSVGs });
 };
 
 module.exports.renderNewHostelForm = (req, res) => {

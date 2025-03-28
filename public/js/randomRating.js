@@ -10,7 +10,7 @@ function getRandomData() {
 document.addEventListener("DOMContentLoaded", function () {
 	document.querySelectorAll(".random-rating").forEach((ele) => {
 		const data = getRandomData();
-		ele.innerHTML = `${data.rating} ⭐ <span class="text-secondary">(${data.reviews} reviews)</span>`;
+		ele.innerHTML = `${data.rating}&nbsp;${svgData.largeStar} &nbsp;&nbsp;&nbsp;<span class="text-secondary">(${data.reviews} reviews)</span>`;
 	});
 
 	document.querySelectorAll(".random-km").forEach((ele) => {
