@@ -42,10 +42,6 @@ async function main() {
 	await mongoose.connect(MONGO_URL);
 }
 
-app.get("/", (req, res) => {
-	res.redirect("/hostels");
-});
-
 // Session Configuration
 const sessionOptions = {
 	secret: "mysuperdupersecretcode",
@@ -82,6 +78,10 @@ app.use((req, res, next) => {
 app.use("/hostels", hostelsRouter);
 app.use("/hostels/:id/reviews", reviewsRouter);
 app.use("/", usersRouter);
+
+app.use("/", (req, res) => {
+	res.redirect("/hostels");
+});
 
 // 404 Error Handler
 app.all("*", (req, res, next) => {
