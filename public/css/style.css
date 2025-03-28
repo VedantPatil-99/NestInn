@@ -86,6 +86,9 @@ nav {
 	font-weight: 500;
 }
 
+.search-subtitle {
+	font-size: 0.9rem;
+}
 .search-content {
 	display: flex;
 	justify-content: start;
