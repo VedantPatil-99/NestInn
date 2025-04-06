@@ -85,7 +85,7 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(
 	session({
-		secret: process.env.SESSION_SECRET,
+		secret: process.env.SECRET,
 		resave: false,
 		saveUninitialized: false,
 	}),
