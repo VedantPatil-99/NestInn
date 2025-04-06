@@ -49,7 +49,7 @@ async function main() {
 const store = MongoStore.create({
 	mongoUrl: ATLAS_DB_URL,
 	crypto: {
-		secret: "mysuperdupersecretcode",
+		secret: process.env.SECRET,
 	},
 	touchAfter: 24 * 3600,
 });
@@ -60,7 +60,7 @@ store.on("error", (err) => {
 
 const sessionOptions = {
 	store,
-	secret: "mysuperdupersecretcode",
+	secret: process.env.SECRET,
 	resave: false,
 	saveUninitialized: true,
 	cookie: {
