@@ -124,11 +124,12 @@
 	</div>
 
 	<!-- Right Side Price -->
-	<div class="right-side col-lg-4 py-4">
-		<p class="price pt-2">
-			&#8377;&nbsp;<%= hostel.price.toLocaleString("en-IN") %>
+	<div class="right-side col-lg-4 p-4">
+		<!-- <p class="price pt-2">
+			
 			<span> per year </span>
-		</p>
+		</p> -->
+		<%- include("../includes/components/priceDetails.ejs") %>
 	</div>
 </div>
 
