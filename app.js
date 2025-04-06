@@ -13,6 +13,7 @@ const ExpressError = require("./utils/ExpressError");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
@@ -33,17 +34,32 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // MongoDB Connection
 const MONGO_URL = "mongodb://127.0.0.1:27017/nestinn";
+const ATLAS_DB_URL = process.env.ATLAS_DB_URL;
 
 main()
 	.then(() => console.log("Connected to MongoDB"))
 	.catch((err) => console.log(err));
 
 async function main() {
-	await mongoose.connect(MONGO_URL);
+	await mongoose.connect(ATLAS_DB_URL);
 }
 
 // Session Configuration
+
+const store = MongoStore.create({
+	mongoUrl: ATLAS_DB_URL,
+	crypto: {
+		secret: "mysuperdupersecretcode",
+	},
+	touchAfter: 24 * 3600,
+});
+
+store.on("error", (err) => {
+	console.log("Error in Atlas Mongo Store", err);
+});
+
 const sessionOptions = {
+	store,
 	secret: "mysuperdupersecretcode",
 	resave: false,
 	saveUninitialized: true,
@@ -96,6 +112,6 @@ app.use((err, req, res, next) => {
 });
 
 // Start Server
-app.listen(3000, () => {
+app.listen(8181, () => {
 	console.log("Server running on port 3000");
 });
