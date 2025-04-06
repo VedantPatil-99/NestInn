@@ -16,7 +16,7 @@ const sampleHostels = [
 			city: "Manali",
 			state: "Himachal Pradesh",
 			country: "India",
-			zipCode: "175131",
+			pinCode: "175131",
 		},
 		price: 1500,
 		images: [
@@ -42,7 +42,7 @@ const sampleHostels = [
 			city: "Goa",
 			state: "Goa",
 			country: "India",
-			zipCode: "403001",
+			pinCode: "403001",
 		},
 		price: 3500,
 		images: [
@@ -68,7 +68,7 @@ const sampleHostels = [
 			city: "Mumbai",
 			state: "Maharashtra",
 			country: "India",
-			zipCode: "400001",
+			pinCode: "400001",
 		},
 		price: 2000,
 		images: [
@@ -88,7 +88,7 @@ const sampleHostels = [
 ];
 
 const seedDB = async () => {
-	await Hostel.deleteMany({});
+	// await Hostel.deleteMany({});
 	newSampleHostels = sampleHostels.map((obj) => ({
 		...obj,
 		owner: "67b60d5d35bc020be52e222f",
