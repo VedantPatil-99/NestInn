@@ -42,3 +42,9 @@ module.exports.logout = (req, res, next) => {
 		res.redirect("/hostels");
 	});
 };
+
+module.exports.googleLogin = (req, res) => {
+	req.flash("success", "Welcome back!");
+	const redirectUrl = res.locals.redirectUrl || "/hostels"; // or your homepage
+	res.redirect(redirectUrl);
+};

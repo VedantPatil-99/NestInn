@@ -17,6 +17,7 @@ const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
+require("./passport-setup");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 
@@ -82,6 +83,17 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+app.use(
+	session({
+		secret: process.env.SESSION_SECRET,
+		resave: false,
+		saveUninitialized: false,
+	}),
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Middleware for flash messages & user authentication
 app.use((req, res, next) => {
 	res.locals.success = req.flash("success");
@@ -113,5 +125,5 @@ app.use((err, req, res, next) => {
 
 // Start Server
 app.listen(8181, () => {
-	console.log("Server running on port 3000");
+	console.log("Server running on port 8181");
 });

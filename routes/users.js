@@ -27,4 +27,21 @@ router
 // Logout Route
 router.get("/logout", userController.logout);
 
+// Google OAuth Routes
+// 1. Start Google Auth process
+router.get(
+	"/auth/google",
+	passport.authenticate("google", { scope: ["profile", "email"] }),
+);
+
+// 2. Google Callback URL after authentication
+router.get(
+	"/auth/google/callback",
+	passport.authenticate("google", {
+		failureRedirect: "/login",
+		failureFlash: true,
+	}),
+	userController.googleLogin,
+);
+
 module.exports = router;
