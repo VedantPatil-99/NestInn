@@ -1,0 +1,132 @@
+<div
+	class="card shadow rounded-4 p-4 border sticky-top z-1 w-auto row col-lg-10 col-md-6"
+	id="priceCard"
+	data-base-price="<%= hostel.price %>"
+	style="top: 18vh"
+>
+	<!-- Top Section -->
+	<h4 class="fw-bold">
+		&#8377;&nbsp;<span id="monthlyPrice" class="fw-bold fs-4"
+			><%= hostel.price.toLocaleString("en-IN") %></span
+		>
+		<small class="fs-6">/ month</small>
+	</h4>
+	<p class="mb-4 text-muted">Minimum stay: 6 months</p>
+
+	<!-- Room Type & Booking Duration -->
+	<div class="w-100 mb-2 d-flex gap-2 p-0">
+		<!-- Room Type Dropdown -->
+		<div class="dropdown w-100">
+			<button
+				class="btn border-dark w-100 d-flex justify-content-between align-items-center dropdown-toggle"
+				type="button"
+				data-bs-toggle="dropdown"
+			>
+				<span class="me-auto text-start">
+					<div class="fw-semibold">Room Type</div>
+					<div class="text-muted small" id="roomTypeLabel">Add Room Type</div>
+				</span>
+			</button>
+			<ul class="dropdown-menu w-100 shadow" id="roomTypeOptions">
+				<li>
+					<a class="dropdown-item" href="#" data-room-type="Single">Single</a>
+				</li>
+				<li>
+					<a class="dropdown-item" href="#" data-room-type="Double">Double</a>
+				</li>
+				<li>
+					<a class="dropdown-item" href="#" data-room-type="Shared">Shared</a>
+				</li>
+			</ul>
+		</div>
+
+		<!-- Booking Duration Dropdown -->
+		<div class="dropdown w-100">
+			<button
+				class="btn border-dark w-100 d-flex justify-content-between align-items-center dropdown-toggle"
+				type="button"
+				data-bs-toggle="dropdown"
+			>
+				<span class="me-auto text-start">
+					<div class="fw-semibold">Booking Duration</div>
+					<div class="text-muted small" id="durationLabel">Add Duration</div>
+				</span>
+			</button>
+			<ul class="dropdown-menu w-100 shadow" id="durationOptions">
+				<li>
+					<a class="dropdown-item" href="#" data-duration="6">6 months</a>
+				</li>
+				<li>
+					<a class="dropdown-item" href="#" data-duration="9">9 months</a>
+				</li>
+				<li>
+					<a class="dropdown-item" href="#" data-duration="12">12 months</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- Students Counter -->
+	<div
+		class="w-100 mb-3 d-flex justify-content-between align-items-center btn border-dark"
+	>
+		<div class="text-start">
+			<div class="fw-semibold">Students</div>
+			<div class="text-muted small" id="studentCountLabel">1</div>
+		</div>
+		<div class="d-flex align-items-center gap-3">
+			<button
+				class="btn border-dark-subtle rounded-circle px-2 py-0"
+				id="decreaseStudent"
+			>
+				<i class="fa-solid fa-minus fa-xs"></i>
+			</button>
+			<span id="studentCount" class="px-2">1</span>
+			<button
+				class="btn border-dark-subtle rounded-circle px-2 py-0"
+				id="increaseStudent"
+			>
+				<i class="fa-solid fa-plus fa-xs"></i>
+			</button>
+		</div>
+	</div>
+
+	<!-- Reserve Button -->
+	<a href="/login" class="btn btn-danger py-2 mb-3 s-title">Reserve</a>
+
+	<!-- Security Deposit Info -->
+	<p class="text-muted text-center">
+		<i class="fa-solid fa-vault pe-1"></i> Security Deposit: ₹2,000 - refundable
+		<br />
+		<small class="text-decoration-underline">Will be added after booking</small>
+	</p>
+
+	<!-- Price Breakdown -->
+	<hr class="mt-2 opacity-25" />
+	<div>
+		<p class="s-title">
+			&#8377;&nbsp;<span id="breakdownPrice" class="s-title"
+				><%= hostel.price %></span
+			>
+			× <span id="duration" class="s-title">6</span> months ×
+			<span id="students" class="s-title">1</span> student(s)
+		</p>
+	</div>
+
+	<div class="d-flex justify-content-between align-items-center">
+		<h6 class="s-title text-decoration-underline">
+			Price: &#8377;&nbsp;<span id="perStudentPrice" class="s-title fs-6"
+				>loading</span
+			>
+			<span>/ student</span>
+		</h6>
+		<h6 class="s-title text-decoration-underline">
+			Total: &#8377;&nbsp;<span id="totalAmount" class="s-title fs-6"
+				><%= hostel.price %></span
+			>
+		</h6>
+	</div>
+</div>
+
+<!-- External JS file -->
+<script src="../js/components/priceCard.js"></script>
