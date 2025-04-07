@@ -33,7 +33,7 @@
 		</div>
 
 		<!-- Main Amenities -->
-		<div class="main-amenities py-4 d-flex flex-column gap-4 border-bottom">
+		<!-- <div class="main-amenities py-4 d-flex flex-column gap-4 border-bottom">
 			<div class="first-amnt d-flex gap-4">
 				<div class="firepit amnt-svg"></div>
 				<div class="amnt-info">
@@ -62,7 +62,32 @@
 					</p>
 				</div>
 			</div>
+		</div> -->
+		<!-- Main Amenities -->
+		<% const mainCategories = ["Entertainment", "Internet and Work"]; let
+		mainAmenities = []; mainCategories.forEach(category => { if
+		(!amenities[category]) return; amenities[category].forEach(am => { if
+		(hostel.amenities.includes(am.name) && mainAmenities.length < 3) {
+		mainAmenities.push(am); } }); }); %>
+
+		<!-- Main Amenities -->
+		<% if (mainAmenities.length > 0) { %>
+		<div class="main-amenities py-4 d-flex flex-column gap-4 border-bottom">
+			<% mainAmenities.forEach(amnt => { %>
+			<div class="d-flex gap-4">
+				<!-- SVG Icon -->
+				<div class="amnt-svg"><%- amnt.icon %></div>
+				<!-- Amenity Info -->
+				<div class="amnt-info">
+					<p class="head-amnt-info m-0"><%= amnt.name %></p>
+					<p class="sub-amnt-info m-0 text-secondary">
+						<%= amnt.description || "This amenity is available." %>
+					</p>
+				</div>
+			</div>
+			<% }) %>
 		</div>
+		<% } %>
 
 		<!-- Hostel Description -->
 		<div class="show-desc py-4 border-bottom">

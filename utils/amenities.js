@@ -1,5 +1,3 @@
-const { name } = require("ejs");
-
 const amenities = {
 	"Scenic Views": [
 		{
