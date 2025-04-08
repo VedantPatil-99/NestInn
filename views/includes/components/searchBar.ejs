@@ -12,7 +12,9 @@
 		>
 			<div class="px-3 py-1 search-content d-block">
 				<p class="m-0 text-black search-title">Where</p>
-				<p class="m-0 text-secondary search-subtitle">Search destinations</p>
+				<p class="m-0 text-secondary search-subtitle" id="selected-city">
+					<%= selectedCity ? selectedCity : "Search destinations" %>
+				</p>
 			</div>
 		</button>
 		<div>

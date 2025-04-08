@@ -156,9 +156,14 @@ module.exports.index = async (req, res) => {
 
 	const uniqueLocations = Array.from(uniqueLocationsMap.values());
 
+	// Add "None" option at the top
+	uniqueLocations.unshift({ city: "None", state: "" });
+
 	res.render("hostels/index", {
 		allHostels,
 		uniqueLocations,
 		allSVGs,
+		selectedCity: city,
+		selectedState: state,
 	});
 };

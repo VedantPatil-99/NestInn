@@ -20,6 +20,11 @@ document.addEventListener("DOMContentLoaded", () => {
 			const city = option.getAttribute("data-city");
 			const state = option.getAttribute("data-state");
 
+			const cityDisplay = document.getElementById("selected-city");
+			if (cityDisplay) {
+				cityDisplay.innerText = city === "None" ? "Search destinations" : city;
+			}
+
 			const url = new URL(window.location.href);
 			url.searchParams.set("city", city);
 			url.searchParams.set("state", state);

@@ -1,15 +1,8 @@
-<!-- Where Modal -->
-<div
-	class="modal fade"
-	id="whereModal"
-	tabindex="-1"
-	aria-labelledby="whereModalLabel"
-	aria-hidden="true"
->
-	<div class="modal-dialog modal-dialog-scrollable">
+<div class="modal fade" id="whereModal" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="whereModalLabel">Select a Destination</h5>
+				<h5 class="modal-title">Select a Destination</h5>
 				<button
 					type="button"
 					class="btn-close"
@@ -19,13 +12,16 @@
 			</div>
 			<div class="modal-body">
 				<ul class="list-group">
+					<!-- Unique city/state list -->
 					<% uniqueLocations.forEach(loc => { %>
 					<li
-						class="list-group-item location-option"
+						class="list-group-item list-group-item-action location-option p-4"
 						data-city="<%= loc.city %>"
 						data-state="<%= loc.state %>"
 					>
-						<b><%= loc.city %></b>, <%= loc.state %>
+						<span class="s-title"><%= loc.city %></span> <% if (loc.state) { %>
+						<small class="text-muted">(<%= loc.state %>)</small>
+						<% } %>
 					</li>
 					<% }) %>
 				</ul>
