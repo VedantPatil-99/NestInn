@@ -41,4 +41,6 @@ router.get(
 	wrapAsync(hostelController.renderEditHostelForm),
 );
 
+router.get("/", hostelController.index);
+
 module.exports = router;

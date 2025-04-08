@@ -11,3 +11,20 @@ window.addEventListener("scroll", () => {
 		navbar.classList.remove("border-bottom");
 	}
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+	const locationOptions = document.querySelectorAll(".location-option");
+
+	locationOptions.forEach((option) => {
+		option.addEventListener("click", () => {
+			const city = option.getAttribute("data-city");
+			const state = option.getAttribute("data-state");
+
+			const url = new URL(window.location.href);
+			url.searchParams.set("city", city);
+			url.searchParams.set("state", state);
+
+			window.location.href = url.toString();
+		});
+	});
+});

@@ -4,7 +4,12 @@
 		class="btn-group col-xl-8 offset-xl-2 col-12 offset-0 border border-secondary-subtle rounded-pill shadow-sm active"
 		role="group"
 	>
-		<button type="button" class="btn btn-outline-secondary rounded-pill">
+		<button
+			type="button"
+			class="btn btn-outline-secondary rounded-pill"
+			data-bs-toggle="modal"
+			data-bs-target="#whereModal"
+		>
 			<div class="px-3 py-1 search-content d-block">
 				<p class="m-0 text-black search-title">Where</p>
 				<p class="m-0 text-secondary search-subtitle">Search destinations</p>
@@ -51,4 +56,6 @@
 </div>
 <!-- SB 1 End -->
 <div class="invisible" style="height: 10vh">Spacing</div>
+
 <script src="../js/components/searchBar.js"></script>
+<%- include(".././modalBoxes/searchWhere.ejs") %>

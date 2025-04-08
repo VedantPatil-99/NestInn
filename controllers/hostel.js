@@ -123,3 +123,42 @@ module.exports.destroyHostel = async (req, res) => {
 
 	res.redirect("/hostels");
 };
+
+module.exports.index = async (req, res) => {
+	const { city, state } = req.query;
+
+	let filter = {};
+	if (city && state) {
+		filter = {
+			"address.city": city,
+			"address.state": state,
+		};
+	}
+
+	const allHostels = await Hostel.find(filter);
+
+	// Fetch all locations
+	const allLocations = await Hostel.find().select(
+		"address.city address.state -_id",
+	);
+
+	// Remove duplicates
+	const uniqueLocationsMap = new Map();
+	allLocations.forEach((loc) => {
+		const key = `${loc.address.city.toLowerCase()},${loc.address.state.toLowerCase()}`;
+		if (!uniqueLocationsMap.has(key)) {
+			uniqueLocationsMap.set(key, {
+				city: loc.address.city,
+				state: loc.address.state,
+			});
+		}
+	});
+
+	const uniqueLocations = Array.from(uniqueLocationsMap.values());
+
+	res.render("hostels/index", {
+		allHostels,
+		uniqueLocations,
+		allSVGs,
+	});
+};
