@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", function () {
 	// console.log("First Review Rating:", listing.reviews[0]?.rating);
 
 	rated.forEach((rate, idx) => {
-		if (listing.reviews[idx]) {
-			let rating = listing.reviews[idx].rating;
+		if (hostel.reviews[idx]) {
+			let rating = hostel.reviews[idx].rating;
 			// console.log(`Review ${idx + 1} Rating:`, rating);
 
 			if (!isNaN(rating) && rating > 0) {
