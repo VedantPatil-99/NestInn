@@ -5,10 +5,6 @@
 
 <!-- Search Bar -->
 <%- include('../includes/components/searchBar.ejs') %>
-<!-- Filters -->
-<!-- <div class="m-0 filters-bar py-3 shadow-sm">
-	<%# include("../includes/filters.ejs") %>
-</div> -->
 
 <!-- Hostels Grid -->
 <div
@@ -35,9 +31,13 @@
 					<br />
 					<span class="card-text">
 						<span class="random-km text-secondary">Loading km...</span><br />
-						<span class="random-rating fw-bold d-flex align-items-center"
-							>Loading ratings...</span
-						>
+						<span class="fw-bold d-flex align-items-center"
+							><%= hostel.avgRating ? hostel.avgRating.toFixed(1): "0.0" %>
+							%>&nbsp;<%- allSVGs.largeStar %>
+							<span class="text-secondary ps-1"
+								>(<%= hostel.reviews.length %> reviews)</span
+							>
+						</span>
 					</span>
 				</p>
 
@@ -47,12 +47,6 @@
 					<span class="price"><%= hostel.price.toLocaleString("en-IN") %></span>
 					<span> / month</span>
 				</p>
-
-				<!-- <p class="text-decoration-underline pt-2 newPrice toHide">
-					<b>&#8377;</b>&nbsp;
-					<span class="priceNtax toHide"> <%= hostel.price %> </span>
-					<span>total before taxes</span>
-				</p> -->
 			</div>
 		</div>
 	</div>
@@ -61,4 +55,3 @@
 
 <!-- Scripts -->
 <script src="../js/randomRating.js"></script>
-<!-- <script src="../js/filters.js"></script> -->
