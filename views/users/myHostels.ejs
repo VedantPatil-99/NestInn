@@ -47,6 +47,21 @@
 						>
 						<span> / month</span>
 					</p>
+					<div class="btns d-flex mb-2">
+						<a
+							href="/hostels/<%= hostel._id %>/edit"
+							class="btn btn-outline-dark btn-sm"
+							>Edit</a
+						>
+						<form
+							action="/hostels/<%= hostel._id %>?_method=DELETE"
+							method="post"
+						>
+							<button class="btn btn-outline-danger btn-sm offset-3">
+								Delete
+							</button>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
