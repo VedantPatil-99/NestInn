@@ -1,0 +1,56 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="mt-4">
+	<h2 class="s-title mb-4">My Hosted Hostels</h2>
+
+	<% if (myHostels.length === 0) { %>
+	<p class="text-muted">You haven't listed any hostels yet.</p>
+	<% } else { %>
+	<div
+		class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1"
+	>
+		<% myHostels.forEach(hostel => { %>
+		<div class="col mb-4">
+			<div class="card h-100 bg-light">
+				<!-- Image with link -->
+				<a href="/hostels/<%= hostel._id %>">
+					<img
+						src="<%= hostel.images.length ? hostel.images[0].url : '/icons/default.jpg' %>"
+						class="card-img-top"
+						alt="hostel_image"
+					/>
+				</a>
+
+				<!-- Card Body -->
+				<div class="card-body h-auto p-0">
+					<p class="card-text">
+						<span class="card-title">
+							<%= hostel.address.city %>, <%= hostel.address.country %>
+						</span>
+						<br />
+						<span class="card-text">
+							<span class="fw-bold d-flex align-items-center"
+								><%= hostel.avgRating ? hostel.avgRating.toFixed(1): "0.0" %>
+								%>&nbsp;<%- allSVGs.largeStar %>
+								<span class="text-secondary ps-1"
+									>(<%= hostel.reviews.length %> reviews)</span
+								>
+							</span>
+						</span>
+					</p>
+
+					<!-- Price -->
+					<p class="oldPrice pt-2">
+						<b>&#8377;</b>&nbsp;
+						<span class="price"
+							><%= hostel.price.toLocaleString("en-IN") %></span
+						>
+						<span> / month</span>
+					</p>
+				</div>
+			</div>
+		</div>
+		<% }) %>
+	</div>
+	<% } %>
+</div>

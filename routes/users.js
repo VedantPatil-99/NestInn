@@ -4,7 +4,7 @@ const router = express.Router();
 const passport = require("passport");
 const { saveRedirectURL } = require("../middleware.js");
 const userController = require("../controllers/user.js");
-
+const { isLoggedIn } = require("../middleware.js");
 // Signup Routes
 router
 	.route("/signup")
@@ -43,5 +43,9 @@ router.get(
 	}),
 	userController.googleLogin,
 );
+
+// my-hostels Route
+// This route is used to show the hostels that the user has created
+router.get("/my-hostels", isLoggedIn, userController.showMyHostels);
 
 module.exports = router;
