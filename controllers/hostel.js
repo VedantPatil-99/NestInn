@@ -71,6 +71,8 @@ module.exports.showHostel = async (req, res) => {
 		req.flash("error", "Hostel not found!");
 		return res.redirect("/hostels");
 	}
+	const total = hostel.reviews.reduce((sum, r) => sum + r.rating, 0);
+	hostel.avgRating = hostel.reviews.length ? total / hostel.reviews.length : 0;
 
 	res.render("./hostels/show.ejs", { hostel, amenities, allSVGs });
 };

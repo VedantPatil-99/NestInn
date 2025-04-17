@@ -11,7 +11,11 @@
 				<span class="bathrooms">2 </span> bathrooms
 			</h6>
 			<div class="reviews-overview">
-				<b><i class="fa-solid fa-star"></i> 4.95 </b> <b class="dot px-1">·</b>
+				<b
+					><i class="fa-solid fa-star"></i> <%= hostel.avgRating ?
+					hostel.avgRating.toFixed(1): "0.0" %>
+				</b>
+				<b class="dot px-1">·</b>
 				<b class="total-reviews text-decoration-underline"
 					><%= hostel.reviews.length %> reviews</b
 				>
