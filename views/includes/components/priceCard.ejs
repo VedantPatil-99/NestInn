@@ -93,13 +93,20 @@
 
 	<!-- Reserve Button -->
 	<!-- <a href="/login" class="btn btn-danger py-2 mb-3 s-title">Reserve</a> -->
-	<button
-		class="btn btn-danger py-2 mb-3 s-title"
-		data-bs-toggle="modal"
-		data-bs-target="#reservationModal"
-	>
+	<button id="submitReservationBtn" class="btn btn-danger py-2 mb-3 s-title">
 		Reserve
 	</button>
+	<form
+		id="reservationForm"
+		action="/hostels/<%= hostel._id %>/reserve"
+		method="POST"
+		class="d-none"
+	>
+		<input type="hidden" name="roomType" id="formRoomType" />
+		<input type="hidden" name="duration" id="formDuration" />
+		<input type="hidden" name="students" id="formStudents" />
+		<input type="hidden" name="mealPlan" id="formMealPlan" />
+	</form>
 
 	<!-- Security Deposit Info -->
 	<p class="text-muted text-center">
@@ -134,9 +141,6 @@
 		</h6>
 	</div>
 </div>
-
-<!-- Reservation Modal -->
-<%- include("../includes/modalBoxes/showDesreservationM.ejs") %>
 
 <!-- External JS file -->
 <script src="../js/components/priceCard.js"></script>

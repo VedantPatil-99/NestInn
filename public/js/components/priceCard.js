@@ -63,3 +63,33 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Initial call
 	updatePrice();
 });
+
+document
+	.getElementById("submitReservationBtn")
+	.addEventListener("click", () => {
+		const roomType = document
+			.getElementById("roomTypeLabel")
+			.textContent.trim();
+		const duration = document
+			.getElementById("durationLabel")
+			.textContent.trim()
+			.split(" ")[0];
+		const students = document.getElementById("studentCount").textContent.trim();
+		const mealPlan =
+			document.getElementById("mealPlanCheckbox")?.checked || false;
+
+		// Validation
+		if (roomType === "Add Room Type" || duration === "Add Duration") {
+			alert("Please select both Room Type and Duration.");
+			return;
+		}
+
+		// Set hidden form values
+		document.getElementById("formRoomType").value = roomType;
+		document.getElementById("formDuration").value = duration;
+		document.getElementById("formStudents").value = students;
+		document.getElementById("formMealPlan").value = mealPlan;
+
+		// Submit the form
+		document.getElementById("reservationForm").submit();
+	});
