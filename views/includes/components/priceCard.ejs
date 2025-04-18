@@ -92,7 +92,14 @@
 	</div>
 
 	<!-- Reserve Button -->
-	<a href="/login" class="btn btn-danger py-2 mb-3 s-title">Reserve</a>
+	<!-- <a href="/login" class="btn btn-danger py-2 mb-3 s-title">Reserve</a> -->
+	<button
+		class="btn btn-danger py-2 mb-3 s-title"
+		data-bs-toggle="modal"
+		data-bs-target="#reservationModal"
+	>
+		Reserve
+	</button>
 
 	<!-- Security Deposit Info -->
 	<p class="text-muted text-center">
@@ -127,6 +134,9 @@
 		</h6>
 	</div>
 </div>
+
+<!-- Reservation Modal -->
+<%- include("../includes/modalBoxes/showDesreservationM.ejs") %>
 
 <!-- External JS file -->
 <script src="../js/components/priceCard.js"></script>
