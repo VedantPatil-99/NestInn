@@ -3,6 +3,10 @@ const Hostel = require("../models/hostel");
 // const dayjs = require("dayjs"); // Optional helper for date math
 
 // CREATE Reservation
+const Reservation = require("../models/reservation");
+const Hostel = require("../models/hostel");
+const dayjs = require("dayjs");
+
 module.exports.createReservation = async (req, res) => {
 	const { hostelId } = req.params;
 	const { durationMonths, students, mealPlan } = req.body;
@@ -19,16 +23,21 @@ module.exports.createReservation = async (req, res) => {
 	const monthlyPrice = hostel.price;
 	const basePrice = monthlyPrice * durationMonths;
 
-	// Optional discount logic per student
-	const perStudent = students > 1 ? 0.95 : 1.0;
-	const mealPlanCost = mealPlan ? 1500 * durationMonths * students : 0;
-	const totalPrice = basePrice * students * perStudent + mealPlanCost;
+	// 🧠 Your discount logic
+	const k = 5;
+	const studentCount = parseInt(students);
+	const discountFactor = 1 - (studentCount - 1) / (k * studentCount);
+	const pricePerStudent = Math.round(basePrice * discountFactor);
+	const subtotal = pricePerStudent * studentCount;
+
+	const mealPlanCost = mealPlan ? 1500 * durationMonths * studentCount : 0;
+	const totalPrice = subtotal + mealPlanCost;
 
 	const reservation = new Reservation({
 		user: req.user._id,
 		hostel: hostelId,
 		durationMonths,
-		students,
+		students: studentCount,
 		startDate,
 		endDate,
 		addOns: { mealPlan },
@@ -41,6 +50,45 @@ module.exports.createReservation = async (req, res) => {
 	req.flash("success", "Reservation submitted successfully!");
 	res.redirect("/reservations/my-reservations");
 };
+
+// module.exports.createReservation = async (req, res) => {
+// 	const { hostelId } = req.params;
+// 	const { durationMonths, students, mealPlan } = req.body;
+
+// 	const hostel = await Hostel.findById(hostelId);
+// 	if (!hostel) {
+// 		req.flash("error", "Hostel not found");
+// 		return res.redirect("/hostels");
+// 	}
+
+// 	const startDate = new Date();
+// 	const endDate = dayjs(startDate).add(durationMonths, "month").toDate();
+
+// 	const monthlyPrice = hostel.price;
+// 	const basePrice = monthlyPrice * durationMonths;
+
+// 	// Optional discount logic per student
+// 	const perStudent = students > 1 ? 0.95 : 1.0;
+// 	const mealPlanCost = mealPlan ? 1500 * durationMonths * students : 0;
+// 	const totalPrice = basePrice * students * perStudent + mealPlanCost;
+
+// 	const reservation = new Reservation({
+// 		user: req.user._id,
+// 		hostel: hostelId,
+// 		durationMonths,
+// 		students,
+// 		startDate,
+// 		endDate,
+// 		addOns: { mealPlan },
+// 		totalPrice,
+// 		status: "pending",
+// 		paymentStatus: "pending",
+// 	});
+
+// 	await reservation.save();
+// 	req.flash("success", "Reservation submitted successfully!");
+// 	res.redirect("/reservations/my-reservations");
+// };
 
 // SHOW User’s Reservations
 module.exports.showMyReservations = async (req, res) => {
@@ -74,21 +122,56 @@ module.exports.updateReservation = async (req, res) => {
 
 	const startDate = new Date();
 	const endDate = dayjs(startDate).add(durationMonths, "month").toDate();
-	const base = reservation.hostel.price * durationMonths;
 
-	const perStudent = students > 1 ? 0.95 : 1.0;
-	const mealPlanCost = mealPlan ? 1500 * durationMonths * students : 0;
-	const totalPrice = base * students * perStudent + mealPlanCost;
+	const basePrice = reservation.hostel.price * durationMonths;
 
+	// 🧠 Discount logic again
+	const k = 5;
+	const studentCount = parseInt(students);
+	const discountFactor = 1 - (studentCount - 1) / (k * studentCount);
+	const pricePerStudent = Math.round(basePrice * discountFactor);
+	const subtotal = pricePerStudent * studentCount;
+
+	const mealPlanCost = mealPlan ? 1500 * durationMonths * studentCount : 0;
+	const totalPrice = subtotal + mealPlanCost;
+
+	// Update reservation details
 	reservation.durationMonths = durationMonths;
-	reservation.students = students;
+	reservation.students = studentCount;
 	reservation.addOns.mealPlan = mealPlan;
 	reservation.startDate = startDate;
 	reservation.endDate = endDate;
 	reservation.totalPrice = totalPrice;
 	reservation.status = "pending";
-	await reservation.save();
 
+	await reservation.save();
 	req.flash("success", "Reservation updated successfully!");
 	res.redirect("/reservations/my-reservations");
 };
+
+// module.exports.updateReservation = async (req, res) => {
+// 	const { durationMonths, students, mealPlan } = req.body;
+// 	const reservation = await Reservation.findById(
+// 		req.params.reservationId,
+// 	).populate("hostel");
+
+// 	const startDate = new Date();
+// 	const endDate = dayjs(startDate).add(durationMonths, "month").toDate();
+// 	const base = reservation.hostel.price * durationMonths;
+
+// 	const perStudent = students > 1 ? 0.95 : 1.0;
+// 	const mealPlanCost = mealPlan ? 1500 * durationMonths * students : 0;
+// 	const totalPrice = base * students * perStudent + mealPlanCost;
+
+// 	reservation.durationMonths = durationMonths;
+// 	reservation.students = students;
+// 	reservation.addOns.mealPlan = mealPlan;
+// 	reservation.startDate = startDate;
+// 	reservation.endDate = endDate;
+// 	reservation.totalPrice = totalPrice;
+// 	reservation.status = "pending";
+// 	await reservation.save();
+
+// 	req.flash("success", "Reservation updated successfully!");
+// 	res.redirect("/reservations/my-reservations");
+// };
