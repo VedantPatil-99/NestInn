@@ -1,0 +1,96 @@
+<div class="container my-5">
+	<h2 class="mb-4">Confirm Your Reservation</h2>
+
+	<div class="card shadow-sm">
+		<div class="card-body">
+			<h4>
+				<%= hostel.title %> — ₹<%= hostel.price.toLocaleString("en-IN") %> per
+				month
+			</h4>
+			<p class="text-muted">
+				Stay: <%= allDetails.durationMonths %> months | Students: <%=
+				allDetails.studentsCount %> | Meal
+				<!-- Plan: <%# mealPlan ? "Yes" : "No" %> -->
+			</p>
+
+			<hr />
+			<h5>Price Breakdown</h5>
+			<ul class="list-group list-group-flush mb-3">
+				<li class="list-group-item d-flex justify-content-between">
+					Base Price × Months:
+					<span>₹<%= allDetails.basePrice.toLocaleString("en-IN") %></span>
+				</li>
+				<li class="list-group-item d-flex justify-content-between">
+					Discounted Price per Student:
+					<span
+						>₹<%= allDetails.pricePerStudent.toLocaleString("en-IN") %></span
+					>
+				</li>
+				<li class="list-group-item d-flex justify-content-between">
+					Subtotal (All Students):
+					<span>₹<%= allDetails.subtotal.toLocaleString("en-IN") %></span>
+				</li>
+				<%#if (mealPlan) { %>
+				<!-- <li class="list-group-item d-flex justify-content-between">
+					Meal Plan Cost:
+					<span
+						>₹<%# priceBreakdown.mealPlanCost.toLocaleString("en-IN") %></span
+					>
+				</li> -->
+				<%# } %>
+				<li class="list-group-item d-flex justify-content-between">
+					Security Deposit:
+					<span>₹2,000<%# 2000.toLocaleString("en-IN") %></span>
+				</li>
+			</ul>
+
+			<div class="d-flex justify-content-between align-items-center">
+				<h5>Total Amount:</h5>
+				<h4 class="text-success">
+					₹<%= (allDetails.totalAmount + 2000).toLocaleString("en-IN") %>
+				</h4>
+			</div>
+
+			<form
+				action="/reservations/<%= hostel._id %>/confirm-success"
+				method="POST"
+			>
+				<!--  -->
+				<input type="hidden" name="user" value="<%= allDetails.user %>" /><input
+					type="hidden"
+					name="hostel"
+					value="<%= hostel._id %>"
+				/>
+				<input
+					type="hidden"
+					name="durationMonths"
+					value="<%= allDetails.durationMonths %>"
+				/>
+				<input
+					type="hidden"
+					name="totalPrice"
+					value="<%= allDetails.totalAmount %>"
+				/>
+				<input type="hidden" name="status" value="<%= allDetails.status %>" />
+				<input
+					type="hidden"
+					name="paymentStatus"
+					value="<%= allDetails.paymentStatus %>"
+				/>
+				<input
+					type="hidden"
+					name="startDate"
+					value="<%= allDetails.startDate %>"
+				/>
+				<input type="hidden" name="endDate" value="<%= allDetails.endDate %>" />
+				<input
+					type="hidden"
+					name="students"
+					value="<%= allDetails.studentCount %>"
+				/>
+				<!-- <input type="hidden" name="mealPlan" value="<%# mealPlan %>" /> -->
+				<button class="btn btn-dark btn-block mt-3">Confirm & Reserve</button>
+			</form>
+		</div>
+	</div>
+</div>

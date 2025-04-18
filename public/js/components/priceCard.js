@@ -16,6 +16,11 @@ document.addEventListener("DOMContentLoaded", () => {
 	const roomTypeLabel = document.getElementById("roomTypeLabel");
 	const durationLabel = document.getElementById("durationLabel");
 
+	let inputRoomType = document.getElementById("formRoomType");
+	let inputDuration = document.getElementById("formDuration");
+	let inputStudents = document.getElementById("formStudents");
+	let inputTotalPrice = document.getElementById("formTotalPrice");
+
 	document.getElementById("roomTypeOptions").addEventListener("click", (e) => {
 		if (e.target.dataset.roomType) {
 			roomTypeLabel.innerText = e.target.dataset.roomType;
@@ -50,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	function updatePrice() {
-		const k = 5;
+		const k = 4;
 		const discountFactor = 1 - (students - 1) / (k * students);
 		const pricePerStudent = Math.round(basePrice * discountFactor);
 		const subtotal = pricePerStudent * students * months;
@@ -60,36 +65,39 @@ document.addEventListener("DOMContentLoaded", () => {
 		pricePerStudentEl.innerText = pricePerStudent.toLocaleString("en-IN");
 	}
 
-	// Initial call
+	// Initial price calculation
 	updatePrice();
+
+	document
+		.getElementById("submitReservationBtn")
+		.addEventListener("click", () => {
+			const roomType = roomTypeLabel.textContent.trim();
+			const duration = durationLabel.textContent.trim().split(" ")[0];
+			const userLoggedIn = priceCard.dataset.user === "true";
+
+			if (roomType === "Add Room Type" || duration === "Add Duration") {
+				alert("Please select both Room Type and Duration.");
+				return;
+			}
+
+			if (!userLoggedIn) {
+				window.location.href = "/login";
+				return;
+			}
+
+			inputRoomType.value = roomType;
+			inputDuration.value = duration;
+			inputStudents.value = students;
+			console.log("Clicking submit button");
+			document.getElementById("reservationForm").submit();
+		});
+
+	// document
+	// 	.getElementById("submitReservationBtn")
+	// 	.addEventListener("click", (e) => {
+	// 		e.preventDefault(); // Just for testing
+	// 		alert(
+	// 			`Room Type: ${inputRoomType.value}\nDuration: ${inputDuration.value} months\nStudents: ${inputStudents.value}\ntotalPrice: ${totalAmount.innerText}`,
+	// 		);
+	// 	});
 });
-
-document
-	.getElementById("submitReservationBtn")
-	.addEventListener("click", () => {
-		const roomType = document
-			.getElementById("roomTypeLabel")
-			.textContent.trim();
-		const duration = document
-			.getElementById("durationLabel")
-			.textContent.trim()
-			.split(" ")[0];
-		const students = document.getElementById("studentCount").textContent.trim();
-		const mealPlan =
-			document.getElementById("mealPlanCheckbox")?.checked || false;
-
-		// Validation
-		if (roomType === "Add Room Type" || duration === "Add Duration") {
-			alert("Please select both Room Type and Duration.");
-			return;
-		}
-
-		// Set hidden form values
-		document.getElementById("formRoomType").value = roomType;
-		document.getElementById("formDuration").value = duration;
-		document.getElementById("formStudents").value = students;
-		document.getElementById("formMealPlan").value = mealPlan;
-
-		// Submit the form
-		document.getElementById("reservationForm").submit();
-	});

@@ -51,7 +51,7 @@ module.exports.googleLogin = (req, res) => {
 	res.redirect(redirectUrl);
 };
 
-module.exports.showMyHostels = async (req, res) => {
+module.exports.showMyHostedHostels = async (req, res) => {
 	try {
 		const myHostels = await Hostel.find({ owner: req.user._id })
 			.populate("reviews")
@@ -65,7 +65,7 @@ module.exports.showMyHostels = async (req, res) => {
 				? total / hostel.reviews.length
 				: 0;
 		});
-		res.render("users/myHostels", { myHostels, allSVGs });
+		res.render("users/myHostedHostels", { myHostels, allSVGs });
 	} catch (err) {
 		console.log(err);
 		req.flash("error", "Unable to fetch your hostels.");

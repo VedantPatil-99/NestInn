@@ -4,7 +4,23 @@ const reservationController = require("../controllers/reservations");
 const { isLoggedIn } = require("../middleware"); // for auth
 
 // POST Reservation
-router.post("/:hostelId", isLoggedIn, reservationController.createReservation);
+router.post(
+	"/:hostelId/reserve",
+	isLoggedIn,
+	reservationController.createReservation,
+);
+
+router.get(
+	"/:hostelId/confirm",
+	isLoggedIn,
+	reservationController.createReservation,
+);
+
+router.post(
+	"/:hostelId/confirm-success",
+	isLoggedIn,
+	reservationController.confirmReservation,
+);
 
 // View User Reservations
 router.get(
@@ -26,6 +42,7 @@ router.get(
 	isLoggedIn,
 	reservationController.renderEditForm,
 );
+
 router.put(
 	"/:reservationId",
 	isLoggedIn,

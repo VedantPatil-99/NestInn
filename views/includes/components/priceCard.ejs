@@ -2,6 +2,7 @@
 	class="card shadow rounded-4 p-4 border sticky-top z-1 w-auto row col-lg-10 col-md-6"
 	id="priceCard"
 	data-base-price="<%= hostel.price %>"
+	data-user="<%= currUser ? 'true' : 'false' %>"
 	style="top: 18vh"
 >
 	<!-- Top Section -->
@@ -29,13 +30,19 @@
 			</button>
 			<ul class="dropdown-menu w-100 shadow" id="roomTypeOptions">
 				<li>
-					<a class="dropdown-item" href="#" data-room-type="Single">Single</a>
+					<a class="dropdown-item" href="#priceCard" data-room-type="Single"
+						>Single</a
+					>
 				</li>
 				<li>
-					<a class="dropdown-item" href="#" data-room-type="Double">Double</a>
+					<a class="dropdown-item" href="#priceCard" data-room-type="Double"
+						>Double</a
+					>
 				</li>
 				<li>
-					<a class="dropdown-item" href="#" data-room-type="Shared">Shared</a>
+					<a class="dropdown-item" href="#priceCard" data-room-type="Shared"
+						>Shared</a
+					>
 				</li>
 			</ul>
 		</div>
@@ -54,13 +61,19 @@
 			</button>
 			<ul class="dropdown-menu w-100 shadow" id="durationOptions">
 				<li>
-					<a class="dropdown-item" href="#" data-duration="6">6 months</a>
+					<a class="dropdown-item" href="#priceCard" data-duration="6"
+						>6 months</a
+					>
 				</li>
 				<li>
-					<a class="dropdown-item" href="#" data-duration="9">9 months</a>
+					<a class="dropdown-item" href="#priceCard" data-duration="9"
+						>9 months</a
+					>
 				</li>
 				<li>
-					<a class="dropdown-item" href="#" data-duration="12">12 months</a>
+					<a class="dropdown-item" href="#priceCard" data-duration="12"
+						>12 months</a
+					>
 				</li>
 			</ul>
 		</div>
@@ -92,20 +105,17 @@
 	</div>
 
 	<!-- Reserve Button -->
-	<!-- <a href="/login" class="btn btn-danger py-2 mb-3 s-title">Reserve</a> -->
 	<button id="submitReservationBtn" class="btn btn-danger py-2 mb-3 s-title">
 		Reserve
 	</button>
 	<form
 		id="reservationForm"
-		action="/hostels/<%= hostel._id %>/reserve"
+		action="/reservations/<%= hostel._id %>/reserve"
 		method="POST"
-		class="d-none"
 	>
 		<input type="hidden" name="roomType" id="formRoomType" />
-		<input type="hidden" name="duration" id="formDuration" />
+		<input type="hidden" name="durationMonths" id="formDuration" />
 		<input type="hidden" name="students" id="formStudents" />
-		<input type="hidden" name="mealPlan" id="formMealPlan" />
 	</form>
 
 	<!-- Security Deposit Info -->
@@ -143,4 +153,4 @@
 </div>
 
 <!-- External JS file -->
-<script src="../js/components/priceCard.js"></script>
+<script src="/js/components/priceCard.js"></script>

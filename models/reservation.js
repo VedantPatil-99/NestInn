@@ -31,9 +31,9 @@ const reservationSchema = new Schema({
 
 	endDate: { type: Date, required: true },
 
-	addOns: {
-		mealPlan: { type: Boolean, default: false },
-	},
+	// addOns: {
+	// 	mealPlan: { type: Boolean, default: false },
+	// },
 
 	createdAt: { type: Date, default: Date.now },
 });

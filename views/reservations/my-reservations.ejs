@@ -1,0 +1,64 @@
+<div class="container my-5">
+	<h2 class="mb-4">My Reservations</h2>
+
+	<% if (reservations.length === 0) { %>
+	<div class="alert alert-info">You haven't made any reservations yet.</div>
+	<% } else { %>
+	<div class="table-responsive">
+		<table class="table table-bordered table-hover">
+			<thead class="table-dark">
+				<tr>
+					<th>#</th>
+					<th>Hostel</th>
+					<th>Students</th>
+					<th>Duration (Months)</th>
+					<!-- <th>Meal Plan</th> -->
+					<th>Total (₹)</th>
+					<th>Status</th>
+					<th>Start</th>
+					<th>End</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% reservations.forEach((r, idx) => { %>
+				<tr>
+					<td><%= idx + 1 %></td>
+					<td><%= r.hostel.name %></td>
+					<td><%= r.students %></td>
+					<td><%= r.durationMonths %></td>
+					<!-- <td><%# r.addOns.mealPlan ? "Yes" : "No" %></td> -->
+					<td><%= r.totalPrice.toLocaleString("en-IN") %></td>
+					<td>
+						<span
+							class="badge <%= r.status === 'pending' ? 'bg-warning' : r.status === 'cancelled' ? 'bg-danger' : 'bg-success' %>"
+						>
+							<%= r.status %>
+						</span>
+					</td>
+					<td><%= r.startDate.toDateString() %></td>
+					<td><%= r.endDate.toDateString() %></td>
+					<td>
+						<div class="d-flex gap-2">
+							<a
+								href="/reservations/<%= r._id %>/edit"
+								class="btn btn-sm btn-outline-primary"
+								>Edit</a
+							>
+							<form action="/reservations/<%= r._id %>/cancel" method="POST">
+								<button
+									class="btn btn-sm btn-outline-danger"
+									onclick="return confirm('Cancel this reservation?')"
+								>
+									Cancel
+								</button>
+							</form>
+						</div>
+					</td>
+				</tr>
+				<% }) %>
+			</tbody>
+		</table>
+	</div>
+	<% } %>
+</div>

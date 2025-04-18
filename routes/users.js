@@ -46,6 +46,6 @@ router.get(
 
 // my-hostels Route
 // This route is used to show the hostels that the user has created
-router.get("/my-hostels", isLoggedIn, userController.showMyHostels);
+router.get("/my-hosted-hostels", isLoggedIn, userController.showMyHostedHostels);
 
 module.exports = router;
