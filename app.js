@@ -25,6 +25,7 @@ const User = require("./models/user.js");
 const hostelsRouter = require("./routes/hostels.js");
 const reviewsRouter = require("./routes/reviews.js");
 const usersRouter = require("./routes/users.js");
+const reservationRoutes = require("./routes/reservations");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -106,6 +107,7 @@ app.use((req, res, next) => {
 app.use("/hostels", hostelsRouter);
 app.use("/hostels/:id/reviews", reviewsRouter);
 app.use("/", usersRouter);
+app.use("/reservations", reservationRoutes);
 
 app.use("/", (req, res) => {
 	res.redirect("/hostels");
