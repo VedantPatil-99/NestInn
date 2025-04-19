@@ -1,0 +1,35 @@
+<div
+	class="modal fade"
+	id="nearbyModal"
+	tabindex="-1"
+	aria-hidden="true"
+	data-bs-toggle="modal"
+	data-bs-keyboard="true"
+	aria-labelledby="Search Nearby Modal"
+>
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Select Nearby College</h5>
+				<button
+					type="button"
+					class="btn-close"
+					data-bs-dismiss="modal"
+					aria-label="Close"
+				></button>
+			</div>
+			<div class="modal-body">
+				<ul class="list-group">
+					<% uniqueColleges.forEach((college) => { %>
+					<li
+						class="list-group-item list-group-item-action college-option p-3"
+						data-college="<%= college %>"
+					>
+						<%= college ? college: "None" %>
+					</li>
+					<% }) %>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

@@ -9,7 +9,7 @@ const mapToken = process.env.MAP_TOKEN;
 const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
 module.exports.index = async (req, res) => {
-	const { city, state } = req.query;
+	const { city, state, college } = req.query;
 
 	let filter = {};
 	if (city && state) {
@@ -17,16 +17,19 @@ module.exports.index = async (req, res) => {
 			"address.city": city,
 			"address.state": state,
 		};
+	} else if (college) {
+		filter = {
+			nearbyColleges: college,
+		};
 	}
 
 	const allHostels = await Hostel.find(filter).populate("reviews");
 
-	// Fetch all locations
+	// Fetch all unique hostel locations
 	const allLocations = await Hostel.find().select(
 		"address.city address.state -_id",
 	);
 
-	// Remove duplicates
 	const uniqueLocationsMap = new Map();
 	allLocations.forEach((loc) => {
 		const key = `${loc.address.city.toLowerCase()},${loc.address.state.toLowerCase()}`;
@@ -37,12 +40,22 @@ module.exports.index = async (req, res) => {
 			});
 		}
 	});
-
 	const uniqueLocations = Array.from(uniqueLocationsMap.values());
-
-	// Add "None" option at the top
 	uniqueLocations.unshift({ city: "None", state: "" });
 
+	// Fetch all unique colleges from DB
+	const allHostelsWithColleges = await Hostel.find().select(
+		"nearbyColleges -_id",
+	);
+	const collegeSet = new Set();
+	allHostelsWithColleges.forEach((h) => {
+		if (Array.isArray(h.nearbyColleges)) {
+			h.nearbyColleges.forEach((c) => collegeSet.add(c));
+		}
+	});
+	const uniqueColleges = Array.from(collegeSet).sort();
+
+	// Calculate average rating
 	allHostels.forEach((hostel) => {
 		const total = hostel.reviews.reduce((sum, r) => sum + r.rating, 0);
 		hostel.avgRating = hostel.reviews.length
@@ -53,9 +66,11 @@ module.exports.index = async (req, res) => {
 	res.render("hostels/index", {
 		allHostels,
 		uniqueLocations,
-		allSVGs,
 		selectedCity: city,
 		selectedState: state,
+		uniqueColleges,
+		selectedCollege: college,
+		allSVGs,
 	});
 };
 

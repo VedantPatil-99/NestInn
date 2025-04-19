@@ -23,12 +23,20 @@
 			<button
 				type="button"
 				class="btn btn-outline-secondary rounded-pill h-100"
+				data-bs-toggle="modal"
+				data-bs-target="#nearbyModal"
 			>
 				<div class="px-3 py-1 search-content">
 					<p class="m-0 text-black search-title">Nearby</p>
-					<p class="m-0 text-secondary search-subtitle">Add college</p>
+					<p
+						class="m-0 text-secondary search-subtitle text-truncate"
+						id="selected-college"
+					>
+						<%# selectedCollege ? selectedCollege : "Add college" %> Add college
+					</p>
 				</div>
 			</button>
+
 			<span class="border border-1 border-right py-2" id="divider"></span>
 			<button
 				type="button"
@@ -60,4 +68,5 @@
 <div class="invisible" style="height: 10vh">Spacing</div>
 
 <script src="../js/components/searchBar.js"></script>
-<%- include(".././modalBoxes/searchWhere.ejs") %>
+<%- include(".././modalBoxes/searchWhere.ejs") %> <%-
+include(".././modalBoxes/searchNearby.ejs") %>

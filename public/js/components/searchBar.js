@@ -31,5 +31,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
 			window.location.href = url.toString();
 		});
+
+		const collegeOptions = document.querySelectorAll(".college-option");
+
+		collegeOptions.forEach((option) => {
+			option.addEventListener("click", () => {
+				const college = option.getAttribute("data-college");
+				const collegeDisplay = document.getElementById("selected-college");
+
+				if (collegeDisplay) {
+					collegeDisplay.innerText =
+						college === "None" ? "Add college" : college;
+				}
+
+				const url = new URL(window.location.href);
+				if (college === "None") {
+					url.searchParams.delete("college");
+				} else {
+					url.searchParams.set("college", college);
+				}
+
+				window.location.href = url.toString();
+			});
+		});
 	});
 });
