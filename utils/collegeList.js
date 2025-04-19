@@ -1595,3 +1595,5 @@ const collegeList = [
 		"College Name": "Dr. D.Y. Patil Technical Campus, Varale, Talegaon, Pune ",
 	},
 ];
+
+module.exports = collegeList;

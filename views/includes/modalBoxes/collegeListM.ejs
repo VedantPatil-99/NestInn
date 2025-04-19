@@ -1,0 +1,78 @@
+<div
+	class="modal fade"
+	id="collegeModal"
+	tabindex="-1"
+	aria-labelledby="collegeModalLabel"
+	aria-hidden="true"
+>
+	<div class="modal-dialog modal-dialog-scrollable modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="collegeModalLabel">
+					Select Nearby Colleges
+				</h5>
+				<button
+					type="button"
+					class="btn-close"
+					data-bs-dismiss="modal"
+					aria-label="Close"
+				></button>
+			</div>
+			<div class="modal-body">
+				<div class="list-group">
+					<% collegeList.forEach((college, i) => { %>
+					<label class="list-group-item">
+						<input
+							class="form-check-input me-1 college-checkbox"
+							type="checkbox"
+							value="<%= college['College Name'].trim() %>"
+						/>
+						<%= college['College Name'].trim() %>
+					</label>
+					<% }) %>
+				</div>
+				<div class="text-muted mt-2">
+					Select at least 1 and at most 4 colleges.
+				</div>
+			</div>
+			<div class="modal-footer">
+				<small id="collegeError" class="text-danger me-auto d-none"
+					>Please select between 1 to 4 colleges.</small
+				>
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+					Cancel
+				</button>
+				<button type="button" class="btn btn-dark" id="saveCollegesBtn">
+					Save Selection
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+		const checkboxes = document.querySelectorAll(".college-checkbox");
+		const hiddenInput = document.getElementById("nearbyCollegesInput");
+		const saveBtn = document.getElementById("saveCollegesBtn");
+		const errorMsg = document.getElementById("collegeError");
+
+		saveBtn.addEventListener("click", () => {
+			const selected = Array.from(checkboxes)
+				.filter((cb) => cb.checked)
+				.map((cb) => cb.value);
+
+			if (selected.length === 0 || selected.length > 4) {
+				errorMsg.classList.remove("d-none");
+				return;
+			} else {
+				errorMsg.classList.add("d-none");
+			}
+
+			hiddenInput.value = selected.join(",");
+			const modal = bootstrap.Modal.getInstance(
+				document.getElementById("collegeModal"),
+			);
+			modal.hide();
+		});
+	});
+</script>

@@ -23,6 +23,13 @@ const hostelSchema = new Schema({
 		},
 	],
 
+	nearbyColleges: [
+		{
+			type: String,
+			trim: true,
+		},
+	],
+
 	reviews: [
 		{
 			type: Schema.Types.ObjectId,

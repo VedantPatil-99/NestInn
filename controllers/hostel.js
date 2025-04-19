@@ -2,6 +2,7 @@ const Hostel = require("../models/hostel");
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const allSVGs = require("../utils/SVGs");
 const amenities = require("../utils/amenities");
+const collegeList = require("../utils/collegeList");
 const cloudinary = require("cloudinary").v2;
 
 const mapToken = process.env.MAP_TOKEN;
@@ -59,7 +60,7 @@ module.exports.index = async (req, res) => {
 };
 
 module.exports.renderNewHostelForm = (req, res) => {
-	res.render("./hostels/new.ejs", { amenities });
+	res.render("./hostels/new.ejs", { amenities, collegeList });
 };
 
 module.exports.showHostel = async (req, res) => {
@@ -119,7 +120,7 @@ module.exports.renderEditHostelForm = async (req, res) => {
 		return res.redirect("/hostels");
 	}
 
-	res.render("./hostels/edit.ejs", { hostel });
+	res.render("./hostels/edit.ejs", { hostel, amenities, collegeList });
 };
 
 module.exports.updateHostel = async (req, res) => {
