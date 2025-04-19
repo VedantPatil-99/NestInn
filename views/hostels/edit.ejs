@@ -67,6 +67,23 @@
 						/>
 					</div>
 
+					<!-- Nearby Colleges (Read-only but included in form submission) -->
+					<div class="mb-3">
+						<label class="form-label">Nearby Colleges:</label>
+						<input
+							type="text"
+							class="form-control"
+							value="<%= hostel.nearbyColleges.join(', ') %>"
+							readonly
+							disabled
+						/>
+						<input
+							type="hidden"
+							name="hostel[nearbyColleges]"
+							value="<%= hostel.nearbyColleges.join(',') %>"
+						/>
+					</div>
+
 					<!-- Country -->
 					<div class="mb-3 col-md-8">
 						<label for="country" class="form-label">Country:</label>

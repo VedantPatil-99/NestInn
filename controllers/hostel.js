@@ -2,7 +2,7 @@ const Hostel = require("../models/hostel");
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const allSVGs = require("../utils/SVGs");
 const amenities = require("../utils/amenities");
-const collegeList = require("../utils/newCL");
+const collegeList = require("../utils/collegeList");
 const cloudinary = require("cloudinary").v2;
 
 const mapToken = process.env.MAP_TOKEN;
@@ -94,10 +94,14 @@ module.exports.createHostel = async (req, res) => {
 		})
 		.send();
 
-	req.body.hostel.nearbyColleges = req.body.hostel.nearbyColleges
-		.split(",")
-		.map((c) => c.trim())
-		.sort();
+	// Ensure hostel.nearbyColleges is not empty or null in your validation
+	if (
+		!req.body.hostel.nearbyColleges ||
+		req.body.hostel.nearbyColleges.length === 0
+	) {
+		// Handle the error or set a default value
+		return res.status(400).json({ error: "Nearby colleges must be selected" });
+	}
 
 	let newHostel = new Hostel(req.body.hostel);
 	newHostel.owner = req.user._id;
@@ -130,8 +134,16 @@ module.exports.renderEditHostelForm = async (req, res) => {
 		req.flash("error", "Hostel not found!");
 		return res.redirect("/hostels");
 	}
+	const sortedColleges = collegeList.sort((a, b) =>
+		a["College Name"].trim().localeCompare(b["College Name"].trim()),
+	);
 
-	res.render("./hostels/edit.ejs", { hostel, amenities, collegeList });
+	res.render("./hostels/edit.ejs", {
+		hostel,
+		amenities,
+		collegeList,
+		sortedColleges,
+	});
 };
 
 module.exports.updateHostel = async (req, res) => {
@@ -161,11 +173,6 @@ module.exports.updateHostel = async (req, res) => {
 			filename: file.filename,
 		}));
 	}
-
-	req.body.hostel.nearbyColleges = req.body.hostel.nearbyColleges
-		.split(",")
-		.map((c) => c.trim())
-		.sort();
 
 	await hostel.save();
 	req.flash("success", "Hostel updated successfully!");

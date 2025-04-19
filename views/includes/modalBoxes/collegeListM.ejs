@@ -7,12 +7,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title">Select Nearby Colleges</h5>
-				<button
-					type="button"
-					class="btn-close"
-					data-bs-dismiss="modal"
-					aria-label="Close"
-				></button>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
 				<!-- Filter by city -->
@@ -20,33 +15,32 @@
 					<label for="cityFilter" class="form-label">Filter by City</label>
 					<select id="cityFilter" class="form-select">
 						<option value="all">All Cities</option>
-						<% Object.keys(groupedColleges).sort().forEach(city => { %>
-						<option value="<%= city %>"><%= city %></option>
-						<% }) %>
+						<% Object.keys(groupedColleges).sort().forEach(city=> { %>
+							<option value="<%= city %>">
+								<%= city %>
+							</option>
+							<% }) %>
 					</select>
 				</div>
 
 				<!-- College List Grouped by City -->
 				<div id="collegeListContainer">
 					<% for (const city in groupedColleges) { %>
-					<div class="college-city-group" data-city="<%= city %>">
-						<h6 class="text-primary">
-							<i class="bi bi-geo-alt-fill"></i> <%= city %>
-						</h6>
-						<div class="list-group mb-3">
-							<% groupedColleges[city].forEach(college => { %>
-							<label class="list-group-item">
-								<input
-									class="form-check-input me-1 college-checkbox"
-									type="checkbox"
-									value="<%= college %>"
-								/>
-								<%= college %>
-							</label>
-							<% }) %>
+						<div class="college-city-group" data-city="<%= city %>">
+							<h6 class="text-primary">
+								<i class="bi bi-geo-alt-fill"></i>
+								<%= city %>
+							</h6>
+							<div class="list-group mb-3">
+								<% groupedColleges[city].forEach(college=> { %>
+									<label class="list-group-item">
+										<input class="form-check-input me-1 college-checkbox" type="checkbox" value="<%= college %>" />
+										<%= college %>
+									</label>
+									<% }) %>
+							</div>
 						</div>
-					</div>
-					<% } %>
+						<% } %>
 				</div>
 
 				<small class="text-muted">Select up to 4 colleges.</small>
@@ -63,6 +57,7 @@
 		</div>
 	</div>
 </div>
+
 <script>
 	document.addEventListener("DOMContentLoaded", function () {
 		const maxColleges = 4;
@@ -86,11 +81,14 @@
 			const selected = Array.from(
 				document.querySelectorAll(".college-checkbox:checked"),
 			).map((cb) => cb.value);
+			console.log("Selected colleges:", selected);
 			if (selected.length === 0) {
 				alert("Please select at least one college.");
 				return;
 			}
-			hiddenInput.value = selected.join(",");
+			hiddenInput.value = selected.join("~");
+			console.log("Selected colleges:", hiddenInput.value);
+			// console.log(typeof hiddenInput.value);
 			const modal = bootstrap.Modal.getInstance(
 				document.getElementById("collegeModal"),
 			);

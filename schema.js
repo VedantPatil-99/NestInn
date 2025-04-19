@@ -13,6 +13,12 @@ module.exports.hostelSchema = Joi.object({
 			pinCode: Joi.string().required(),
 		}).required(),
 
+		nearbyColleges: Joi.array()
+			.items(Joi.string().trim().min(1).required()) // prevent empty strings
+			.min(1)
+			.max(4)
+			.required(),
+
 		price: Joi.number().required().min(0),
 
 		images: Joi.array()
@@ -26,7 +32,7 @@ module.exports.hostelSchema = Joi.object({
 			.required(),
 
 		owner: Joi.object().required(), // Owner must exist
-		amenities: Joi.array().items(Joi.string()).optional(),
+		amenities: Joi.array().items(Joi.string().trim().min(1)).optional(),
 	}).required(),
 });
 

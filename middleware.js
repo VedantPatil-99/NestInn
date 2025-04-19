@@ -53,10 +53,33 @@ module.exports.isReviewAuthor = async (req, res, next) => {
 
 // Middleware to validate hostel data
 module.exports.validateHostel = (req, res, next) => {
+	console.log("Validating hostel data...", req.body.hostel);
+	console.log("nearbyColleges:", req.body.hostel.nearbyColleges);
 	if (!req.body.hostel) {
 		req.body.hostel = {};
 	}
-	
+
+	// ✅ Normalize and split nearbyColleges only by ~
+	if (req.body.hostel.nearbyColleges) {
+		let raw = req.body.hostel.nearbyColleges;
+
+		// Force into array if it's a single string
+		if (!Array.isArray(raw)) {
+			raw = [raw];
+		}
+
+		req.body.hostel.nearbyColleges = raw
+			.flatMap((entry) => entry.split("~")) // only split by ~
+			.map((college) => college.trim()) // trim whitespace
+			.filter((college) => college.length > 0); // remove empty
+	}
+
+	console.log("Processed nearby colleges:", req.body.hostel.nearbyColleges);
+
+	if (req.body.hostel.amenities && !Array.isArray(req.body.hostel.amenities)) {
+		req.body.hostel.amenities = [req.body.hostel.amenities];
+	}
+
 	if (req.files && req.files.length > 0) {
 		req.body.hostel.images = req.files.map((file) => ({
 			url: file.path,
