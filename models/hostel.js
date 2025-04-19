@@ -23,12 +23,15 @@ const hostelSchema = new Schema({
 		},
 	],
 
-	nearbyColleges: [
-		{
-			type: String,
-			trim: true,
+	nearbyColleges: {
+		type: [String],
+		validate: {
+			validator: function (arr) {
+				return arr.length >= 1 && arr.length <= 4;
+			},
+			message: "Select between 1 and 4 nearby colleges",
 		},
-	],
+	},
 
 	reviews: [
 		{

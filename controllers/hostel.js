@@ -2,7 +2,7 @@ const Hostel = require("../models/hostel");
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const allSVGs = require("../utils/SVGs");
 const amenities = require("../utils/amenities");
-const collegeList = require("../utils/collegeList");
+const collegeList = require("../utils/newCL");
 const cloudinary = require("cloudinary").v2;
 
 const mapToken = process.env.MAP_TOKEN;
@@ -60,7 +60,13 @@ module.exports.index = async (req, res) => {
 };
 
 module.exports.renderNewHostelForm = (req, res) => {
-	res.render("./hostels/new.ejs", { amenities, collegeList });
+	const groupedColleges = {};
+	collegeList.forEach((college) => {
+		const city = college.City.trim();
+		if (!groupedColleges[city]) groupedColleges[city] = [];
+		groupedColleges[city].push(college["College Name"].trim());
+	});
+	res.render("./hostels/new.ejs", { amenities, groupedColleges });
 };
 
 module.exports.showHostel = async (req, res) => {
@@ -87,6 +93,11 @@ module.exports.createHostel = async (req, res) => {
 			limit: 1,
 		})
 		.send();
+
+	req.body.hostel.nearbyColleges = req.body.hostel.nearbyColleges
+		.split(",")
+		.map((c) => c.trim())
+		.sort();
 
 	let newHostel = new Hostel(req.body.hostel);
 	newHostel.owner = req.user._id;
@@ -150,6 +161,11 @@ module.exports.updateHostel = async (req, res) => {
 			filename: file.filename,
 		}));
 	}
+
+	req.body.hostel.nearbyColleges = req.body.hostel.nearbyColleges
+		.split(",")
+		.map((c) => c.trim())
+		.sort();
 
 	await hostel.save();
 	req.flash("success", "Hostel updated successfully!");

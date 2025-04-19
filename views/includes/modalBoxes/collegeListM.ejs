@@ -1,16 +1,12 @@
-<div
-	class="modal fade"
-	id="collegeModal"
-	tabindex="-1"
-	aria-labelledby="collegeModalLabel"
-	aria-hidden="true"
->
-	<div class="modal-dialog modal-dialog-scrollable modal-lg">
+<!-- Hidden input to hold selected colleges (comma separated) -->
+<input type="hidden" id="nearbyCollegesInput" name="hostel[nearbyColleges]" />
+
+<!-- Modal -->
+<div class="modal fade" id="collegeModal" tabindex="-1">
+	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="collegeModalLabel">
-					Select Nearby Colleges
-				</h5>
+				<h5 class="modal-title">Select Nearby Colleges</h5>
 				<button
 					type="button"
 					class="btn-close"
@@ -19,30 +15,48 @@
 				></button>
 			</div>
 			<div class="modal-body">
-				<div class="list-group">
-					<% collegeList.forEach((college, i) => { %>
-					<label class="list-group-item">
-						<input
-							class="form-check-input me-1 college-checkbox"
-							type="checkbox"
-							value="<%= college['College Name'].trim() %>"
-						/>
-						<%= college['College Name'].trim() %>
-					</label>
-					<% }) %>
+				<!-- Filter by city -->
+				<div class="mb-3">
+					<label for="cityFilter" class="form-label">Filter by City</label>
+					<select id="cityFilter" class="form-select">
+						<option value="all">All Cities</option>
+						<% Object.keys(groupedColleges).sort().forEach(city => { %>
+						<option value="<%= city %>"><%= city %></option>
+						<% }) %>
+					</select>
 				</div>
-				<div class="text-muted mt-2">
-					Select at least 1 and at most 4 colleges.
+
+				<!-- College List Grouped by City -->
+				<div id="collegeListContainer">
+					<% for (const city in groupedColleges) { %>
+					<div class="college-city-group" data-city="<%= city %>">
+						<h6 class="text-primary">
+							<i class="bi bi-geo-alt-fill"></i> <%= city %>
+						</h6>
+						<div class="list-group mb-3">
+							<% groupedColleges[city].forEach(college => { %>
+							<label class="list-group-item">
+								<input
+									class="form-check-input me-1 college-checkbox"
+									type="checkbox"
+									value="<%= college %>"
+								/>
+								<%= college %>
+							</label>
+							<% }) %>
+						</div>
+					</div>
+					<% } %>
 				</div>
+
+				<small class="text-muted">Select up to 4 colleges.</small>
 			</div>
+
 			<div class="modal-footer">
-				<small id="collegeError" class="text-danger me-auto d-none"
-					>Please select between 1 to 4 colleges.</small
-				>
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
 					Cancel
 				</button>
-				<button type="button" class="btn btn-dark" id="saveCollegesBtn">
+				<button type="button" id="saveCollegeSelection" class="btn btn-primary">
 					Save Selection
 				</button>
 			</div>
@@ -50,29 +64,52 @@
 	</div>
 </div>
 <script>
-	document.addEventListener("DOMContentLoaded", () => {
-		const checkboxes = document.querySelectorAll(".college-checkbox");
+	document.addEventListener("DOMContentLoaded", function () {
+		const maxColleges = 4;
+		const collegeCheckboxes = document.querySelectorAll(".college-checkbox");
 		const hiddenInput = document.getElementById("nearbyCollegesInput");
-		const saveBtn = document.getElementById("saveCollegesBtn");
-		const errorMsg = document.getElementById("collegeError");
+		const saveBtn = document.getElementById("saveCollegeSelection");
 
+		// Limit checkbox selection
+		collegeCheckboxes.forEach((cb) => {
+			cb.addEventListener("change", () => {
+				const selected = document.querySelectorAll(".college-checkbox:checked");
+				if (selected.length > maxColleges) {
+					cb.checked = false;
+					alert(`You can select up to ${maxColleges} colleges.`);
+				}
+			});
+		});
+
+		// Save selected colleges
 		saveBtn.addEventListener("click", () => {
-			const selected = Array.from(checkboxes)
-				.filter((cb) => cb.checked)
-				.map((cb) => cb.value);
-
-			if (selected.length === 0 || selected.length > 4) {
-				errorMsg.classList.remove("d-none");
+			const selected = Array.from(
+				document.querySelectorAll(".college-checkbox:checked"),
+			).map((cb) => cb.value);
+			if (selected.length === 0) {
+				alert("Please select at least one college.");
 				return;
-			} else {
-				errorMsg.classList.add("d-none");
 			}
-
 			hiddenInput.value = selected.join(",");
 			const modal = bootstrap.Modal.getInstance(
 				document.getElementById("collegeModal"),
 			);
 			modal.hide();
 		});
+
+		// City filter logic
+		document
+			.getElementById("cityFilter")
+			.addEventListener("change", function () {
+				const selectedCity = this.value;
+				const groups = document.querySelectorAll(".college-city-group");
+				groups.forEach((group) => {
+					if (selectedCity === "all" || group.dataset.city === selectedCity) {
+						group.style.display = "";
+					} else {
+						group.style.display = "none";
+					}
+				});
+			});
 	});
 </script>

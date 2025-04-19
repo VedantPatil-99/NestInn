@@ -61,5 +61,19 @@
 	<div id="map" class="mt-4 shadow-sm rounded-4"></div>
 </div>
 
+<div class="container-lg border-top py-4">
+	<% if (hostel.nearbyColleges && hostel.nearbyColleges.length) { %>
+	<h5>Nearby Colleges</h5>
+	<ul class="list-group list-group-flush mb-3">
+		<% hostel.nearbyColleges.forEach(college => { %>
+		<li class="list-group-item">
+			<i class="bi bi-mortarboard-fill me-2 text-success"></i>
+			<%= college %>
+		</li>
+		<% }) %>
+	</ul>
+	<% } %>
+</div>
+
 <!-- JS for Map -->
 <script src="../js/components/map.js"></script>
