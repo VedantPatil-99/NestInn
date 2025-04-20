@@ -1,94 +1,90 @@
 <% layout("/layouts/boilerplate") %>
 
-<!-- Signup Form -->
-<div class="container my-5">
-	<div class="row justify-content-center">
-		<div class="col-lg-5 col-md-7 col-sm-9">
+	<div class="row justify-content-center my-4">
+		<div class="col-lg-4 col-md-5 col-sm-8">
 			<h4 class="mb-4 text-center">Create an Account</h4>
 
-			<form
-				action="/signup"
-				method="POST"
-				class="needs-validation p-4 shadow-lg rounded bg-light"
-				novalidate
-			>
-				<!-- Username -->
-				<div class="mb-3">
-					<label for="username" class="form-label">Username:</label>
-					<div class="input-group">
-						<span class="input-group-text"><i class="fas fa-user"></i></span>
-						<input
-							type="text"
-							name="username"
-							id="username"
-							class="form-control"
-							autocomplete="off"
-							required
-						/>
-						<div class="valid-feedback">Looks good!</div>
+			<div class="glow-box position-relative">
+				<form
+					action="/signup"
+					method="POST"
+					class="needs-validation p-4 shadow-sm rounded-4 position-relative z-1"
+					novalidate>
+					<!-- Username -->
+					<div class="mb-3">
+						<label for="username" class="form-label">Username:</label>
+						<div class="input-group">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+							<input
+								type="text"
+								name="username"
+								id="username"
+								class="form-control"
+								autocomplete="off"
+								required />
+							<div class="valid-feedback">Looks good!</div>
+						</div>
 					</div>
-				</div>
 
-				<!-- Email -->
-				<div class="mb-3">
-					<label for="email" class="form-label">Email:</label>
-					<div class="input-group">
-						<span class="input-group-text"
-							><i class="fas fa-envelope"></i
-						></span>
-						<input
-							type="email"
-							name="email"
-							id="email"
-							class="form-control"
-							required
-						/>
+					<!-- Email -->
+					<div class="mb-3">
+						<label for="email" class="form-label">Email:</label>
+						<div class="input-group">
+							<span class="input-group-text">
+								<i class="fas fa-envelope"></i>
+							</span>
+							<input
+								type="email"
+								name="email"
+								id="email"
+								class="form-control"
+								required />
+						</div>
 					</div>
-				</div>
 
-				<!-- Password -->
-				<div class="mb-3">
-					<label for="password" class="form-label">Password:</label>
-					<div class="input-group">
-						<span class="input-group-text"><i class="fas fa-lock"></i></span>
-						<input
-							type="password"
-							name="password"
-							id="password"
-							class="form-control"
-							required
-						/>
-						<span class="input-group-text">
-							<i
-								class="fas fa-eye"
-								id="togglePassword"
-								style="cursor: pointer"
-							></i>
-						</span>
+					<!-- Password -->
+					<div class="mb-3">
+						<label for="password" class="form-label">Password:</label>
+						<div class="input-group">
+							<span class="input-group-text"><i class="fas fa-lock"></i></span>
+							<input
+								type="password"
+								name="password"
+								id="password"
+								class="form-control"
+								required />
+							<span class="input-group-text">
+								<i
+									class="fas fa-eye"
+									id="togglePassword"
+									style="cursor: pointer"></i>
+							</span>
+						</div>
 					</div>
-				</div>
 
-				<!-- Signup Button -->
-				<div class="d-grid">
-					<button type="submit" class="btn btn-success">Sign Up</button>
-				</div>
+					<!-- Signup Button -->
+					<div class="d-grid">
+						<button type="submit" class="btn btn-success">Sign Up</button>
+					</div>
 
-				<!-- Social Login -->
-				<div class="text-center mt-3">
-					<p>or sign up with</p>
-					<a href="/auth/google" class="btn btn-outline-danger me-2">
-						<i class="fab fa-google"></i> Google
-					</a>
-					<a href="/auth/facebook" class="btn btn-outline-primary">
-						<i class="fab fa-facebook"></i> Facebook
-					</a>
-				</div>
+					<!-- Social Login -->
+					<div class="text-center mt-3">
+						<p>or sign up with</p>
+						<a href="/auth/google" class="btn btn-outline-primary me-2">
+							<i class="fab fa-google"></i>
+							Google
+						</a>
+					</div>
 
-				<!-- Already Have an Account -->
-				<div class="text-center mt-3">
-					<p>Already have an account? <a href="/login">Log in</a></p>
-				</div>
-			</form>
+					<!-- Already Have an Account -->
+					<div class="text-center mt-3">
+						<p>
+							Already have an account?
+							<a href="/login">Log in</a>
+						</p>
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
 </div>
