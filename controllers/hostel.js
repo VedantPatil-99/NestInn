@@ -30,11 +30,11 @@ module.exports.index = async (req, res) => {
 		const max = parseInt(maxPrice);
 
 		if (!isNaN(min) && !isNaN(max)) {
-			filter.monthlyPrice = { $gte: min, $lte: max };
+			filter.price = { $gte: min, $lte: max };
 		} else if (!isNaN(min)) {
-			filter.monthlyPrice = { $gte: min };
+			filter.price = { $gte: min };
 		} else if (!isNaN(max)) {
-			filter.monthlyPrice = { $lte: max };
+			filter.price = { $lte: max };
 		}
 	}
 
