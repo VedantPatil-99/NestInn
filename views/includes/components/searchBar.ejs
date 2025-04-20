@@ -60,10 +60,15 @@
 		<button
 			type="button"
 			class="btn btn-outline-secondary rounded-pill col-2 d-flex justify-content-between flex-row pe-2 py-2"
+			data-bs-toggle="modal"
+			data-bs-target="#searchForWhomModal"
 		>
 			<div class="px-3 py-1 search-content">
 				<p class="m-0 text-black search-title">For</p>
-				<p class="m-0 text-secondary search-subtitle">Add students</p>
+				<p class="m-0 text-secondary search-subtitle" id="selected-forWhom">
+					<%= selectedForWhom ? selectedForWhom : "Add students" %>
+				</p>
+
 			</div>
 			<a class="btn btn-danger btn-lg rounded-circle search-icon"
 				><i class="fa-solid fa-magnifying-glass"></i>
@@ -80,3 +85,5 @@
 <%- include(".././modalBoxes/searchNearby.ejs") %>
 <!--  -->
 <%- include(".././modalBoxes/searchPriceM.ejs") %>
+<!--  -->
+<%- include(".././modalBoxes/searchForWhomM.ejs") %>

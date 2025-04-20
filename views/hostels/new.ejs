@@ -16,12 +16,13 @@
 			<fieldset class="step active-step">
 				<legend>Step 1: Basic Info</legend>
 				<div class="mb-3">
-					<label for="title" class="form-label">Title:</label>
+					<label for="title" class="form-label">Hostel Name:</label>
 					<input
 						type="text"
 						name="hostel[title]"
 						id="title"
 						class="form-control"
+						placeholder="Enter the name of the hostel room (e.g., 'Shree Ganesh Boys Hostel')"
 						required
 					/>
 				</div>
@@ -32,34 +33,53 @@
 						id="description"
 						class="form-control"
 						rows="5"
+						placeholder="Describe the hostel room, its features, and any other relevant information."
 						required
 					></textarea>
 				</div>
+				
+				<div class="row">
+					<!-- Nearby colleges -->
+					<div class="mb-3 col-md-6">
+						<label class="form-label">Nearby Colleges:</label>
+						<br />
+						<small class="text-muted"
+							>Select at least 1 and up to 4 colleges</small
+						>
+						<br />
+						<button
+							type="button"
+							class="btn btn-outline-dark w-100 mt-2"
+							data-bs-toggle="modal"
+							data-bs-target="#collegeModal"
+						>
+							Select Nearby Colleges
+						</button>
+						<input
+							type="hidden"
+							name="hostel[nearbyColleges]"
+							id="nearbyCollegesInput"
+							required
+						/>
+						<%- include ("../includes/modalBoxes/collegeListM.ejs") %>
+					</div>
 
-				<div class="mb-3">
-					<label class="form-label">Nearby Colleges:</label>
-					<br />
-					<small class="text-muted"
-						>Select at least 1 and up to 4 colleges</small
-					>
-					<br />
-					<button
-						type="button"
-						class="btn btn-outline-dark col-4"
-						data-bs-toggle="modal"
-						data-bs-target="#collegeModal"
-					>
-						Select Nearby Colleges
-					</button>
-					<input
-						type="hidden"
-						name="hostel[nearbyColleges]"
-						id="nearbyCollegesInput"
-						required
-					/>
-
-					<%- include ("../includes/modalBoxes/collegeListM.ejs") %>
+					<!-- For Whom -->
+					<div class="mb-3 col-md-6">
+						<label for="forWhom" class="form-label">For the:</label>
+						<br>
+						<small>This particular hostel room is for </small>
+						<select class="form-select mt-2" name="hostel[forWhom]" id="forWhom" required>
+							<option value="" disabled selected>Select an option</option>
+							<option value="Boys">Boys / Male Students</option>
+							<option value="Girls">Girls / Female Students</option>
+							<option value="Parents with Students">Parents with Students</option>
+							<option value="Co-ed">Co-ed / All Genders</option>
+						</select>
+					</div>
 				</div>
+
+				
 
 				<button type="button" class="btn btn-primary next-step">Next</button>
 			</fieldset>

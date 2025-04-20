@@ -13,6 +13,15 @@ module.exports.hostelSchema = Joi.object({
 			pinCode: Joi.string().required(),
 		}).required(),
 
+		forWhom: Joi.string()
+			.valid("Boys", "Girls", "Parents with Students", "Co-ed")
+			.required()
+			.messages({
+				"any.only": `"forWhom" must be one of Boys, Girls, Parents with Students, or Co-ed`,
+				"string.base": `"forWhom" must be a string`,
+				"any.required": `"forWhom" is required`,
+			}),
+
 		nearbyColleges: Joi.array()
 			.items(Joi.string().trim().min(1).required()) // prevent empty strings
 			.min(1)

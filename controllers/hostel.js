@@ -9,7 +9,7 @@ const mapToken = process.env.MAP_TOKEN;
 const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
 module.exports.index = async (req, res) => {
-	const { city, state, college, minPrice, maxPrice } = req.query;
+	const { city, state, college, minPrice, maxPrice, forWhom } = req.query;
 
 	let filter = {};
 	if (city && state) {
@@ -36,6 +36,10 @@ module.exports.index = async (req, res) => {
 		} else if (!isNaN(max)) {
 			filter.price = { $lte: max };
 		}
+	}
+
+	if (forWhom) {
+		filter.forWhom = forWhom;
 	}
 
 	if (city === "None" || !city) delete filter["address.city"];
@@ -94,6 +98,7 @@ module.exports.index = async (req, res) => {
 		selectedCollege: college,
 		selectedMinPrice: minPrice,
 		selectedMaxPrice: maxPrice,
+		selectedForWhom: forWhom,
 	});
 };
 

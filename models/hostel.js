@@ -14,6 +14,12 @@ const hostelSchema = new Schema({
 		pinCode: { type: String, required: true },
 	},
 
+	forWhom: {
+		type: String,
+		enum: ["Boys", "Girls", "Parents with Students", "Co-ed"],
+		required: true,
+	},
+
 	price: { type: Number, required: true, min: 0 },
 
 	images: [

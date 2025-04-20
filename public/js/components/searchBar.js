@@ -104,3 +104,28 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	}
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+	const forWhomForm = document.getElementById("forWhomForm");
+
+	if (forWhomForm) {
+		forWhomForm.addEventListener("submit", (e) => {
+			e.preventDefault();
+			const value = document.getElementById("forWhomSelect").value;
+
+			const url = new URL(window.location.href);
+			if (value) {
+				url.searchParams.set("forWhom", value);
+			} else {
+				url.searchParams.delete("forWhom");
+			}
+			window.location.href = url.toString();
+		});
+
+		document.getElementById("clearForWhom").addEventListener("click", () => {
+			const url = new URL(window.location.href);
+			url.searchParams.delete("forWhom");
+			window.location.href = url.toString();
+		});
+	}
+});
