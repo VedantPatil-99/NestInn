@@ -1,0 +1,48 @@
+<% reservations.forEach((r, idx) => { %>
+<!-- ... existing table row ... -->
+
+<!-- Modal -->
+<div class="modal fade" id="detailsModal-<%= r._id %>" tabindex="-1" aria-labelledby="detailsModalLabel-<%= r._id %>" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="detailsModalLabel-<%= r._id %>">
+          <%= r.hostel.title %> - Full Details
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Hostel Images -->
+        <% if (r.hostel.images && r.hostel.images.length > 0) { %>
+          <div class="mb-3 d-flex gap-2 overflow-auto">
+            <% r.hostel.images.forEach(img => { %>
+              <img src="<%= img.url %>" alt="Hostel Image" class="img-thumbnail" style="width: 150px; height: auto;">
+            <% }) %>
+          </div>
+        <% } %>
+
+        <!-- Hostel Info -->
+        <p><strong>Description:</strong> <%= r.hostel.description %></p>
+        <p><strong>For:</strong> <%= r.hostel.forWhom %></p>
+        <p><strong>Address:</strong> <%= r.hostel.address.street %>, <%= r.hostel.address.city %>, <%= r.hostel.address.state %>, <%= r.hostel.address.country %> - <%= r.hostel.address.pinCode %></p>
+        <p><strong>Nearby Colleges:</strong> <%= r.hostel.nearbyColleges.join(", ") %></p>
+        <p><strong>Amenities:</strong> <%= r.hostel.amenities.join(", ") %></p>
+        <hr>
+        <!-- Reservation Info -->
+        <p><strong>Students:</strong> <%= r.students %></p>
+        <p><strong>Duration:</strong> <%= r.durationMonths %> months</p>
+        <p><strong>Total Price:</strong> ₹<%= r.totalPrice.toLocaleString("en-IN") %></p>
+        <p><strong>Start Date:</strong> <%= r.startDate.toDateString() %></p>
+        <p><strong>End Date:</strong> <%= r.endDate.toDateString() %></p>
+        <p><strong>Reservation Status:</strong> <%= r.status %></p>
+        <p><strong>Payment Status:</strong> <%= r.paymentStatus %></p>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<% }) %>

@@ -1,3 +1,5 @@
+<% layout("/layouts/boilerplate") %>
+
 <div class="container my-5">
 	<h2 class="mb-4">My Reservations</h2>
 
@@ -12,7 +14,6 @@
 					<th>Hostel</th>
 					<th>Students</th>
 					<th>Duration (Months)</th>
-					<!-- <th>Meal Plan</th> -->
 					<th>Total (₹)</th>
 					<th>Status</th>
 					<th>Start</th>
@@ -27,12 +28,9 @@
 					<td><%= r.hostel.name %></td>
 					<td><%= r.students %></td>
 					<td><%= r.durationMonths %></td>
-					<!-- <td><%# r.addOns.mealPlan ? "Yes" : "No" %></td> -->
 					<td><%= r.totalPrice.toLocaleString("en-IN") %></td>
 					<td>
-						<span
-							class="badge <%= r.status === 'pending' ? 'bg-warning' : r.status === 'cancelled' ? 'bg-danger' : 'bg-success' %>"
-						>
+						<span class="badge <%= r.status === 'pending' ? 'bg-warning' : r.status === 'cancelled' ? 'bg-danger' : 'bg-success' %>">
 							<%= r.status %>
 						</span>
 					</td>
@@ -40,21 +38,23 @@
 					<td><%= r.endDate.toDateString() %></td>
 					<td>
 						<div class="d-flex gap-2">
-							<a
-								href="/reservations/<%= r._id %>/edit"
-								class="btn btn-sm btn-outline-primary"
-								>Edit</a
-							>
+							<a href="/reservations/<%= r._id %>/edit" class="btn btn-sm btn-outline-primary">Edit</a>
 							<form action="/reservations/<%= r._id %>/cancel" method="POST">
-								<button
-									class="btn btn-sm btn-outline-danger"
-									onclick="return confirm('Cancel this reservation?')"
-								>
+								<button class="btn btn-sm btn-outline-danger" onclick="return confirm('Cancel this reservation?')">
 									Cancel
 								</button>
 							</form>
+							<!-- View Details Button -->
+							<button
+								class="btn btn-sm btn-outline-info"
+								data-bs-toggle="modal"
+								data-bs-target="#detailsModal-<%= r._id %>"
+							>
+								View
+							</button>
 						</div>
 					</td>
+
 				</tr>
 				<% }) %>
 			</tbody>
@@ -62,3 +62,7 @@
 	</div>
 	<% } %>
 </div>
+
+<%- include("../includes/modalBoxes/reservedHViewM.ejs") %>
+
+<script src="/js/reservationDetails.js"></script>
