@@ -8,9 +8,12 @@
 
 <!-- Hostels Grid -->
 <% if (allHostels.length === 0) { %>
-	<div class="text-center text-secondary mt-5 animate__animated animate__fadeIn " style="height: 50vh;">
-		<h1 class="mb-3">No hostels found 😕</h1>
-		<p>Try adjusting your filters or search again.</p>
+	<div class="text-center text-secondary animate__animated animate__fadeIn " style="height: 75vh;">
+		<div>
+			<%- allSVGs.NoData %>
+		</div>
+		<h4>No hostels found 😕</h4>
+		<p class="m-0">Try adjusting your filters or search again.</p>
 		<a href="/hostels" class="btn btn-danger mt-3">
 			<i class="fa-solid fa-clock-rotate-left me-2"></i>
 			Clear All Filters

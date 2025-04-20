@@ -79,6 +79,10 @@ document.addEventListener("DOMContentLoaded", () => {
 			} else {
 				url.searchParams.delete("maxPrice");
 			}
+			if (!minPrice && !maxPrice) {
+				e.preventDefault(); // Prevent form submission if both fields are empty
+				return;
+			}
 
 			window.location.href = url.toString();
 		});
