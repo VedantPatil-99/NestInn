@@ -17,7 +17,9 @@ module.exports.index = async (req, res) => {
 			"address.city": city,
 			"address.state": state,
 		};
-	} else if (college) {
+	}
+
+	if (college) {
 		filter = {
 			nearbyColleges: college,
 		};
@@ -35,6 +37,11 @@ module.exports.index = async (req, res) => {
 			filter.monthlyPrice = { $lte: max };
 		}
 	}
+
+	if (city === "None" || !city) delete filter["address.city"];
+	if (!state) delete filter["address.state"];
+	if (!college) delete filter["nearbyColleges"];
+	// console.log(filter);
 
 	const allHostels = await Hostel.find(filter).populate("reviews");
 
