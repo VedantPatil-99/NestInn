@@ -1,0 +1,51 @@
+.confirm-pg {
+	background:
+		repeating-conic-gradient(from 30deg, #0000 0 120deg, #28262b 0 180deg) 200px
+			115.39999999999999px,
+		repeating-conic-gradient(
+			from 30deg,
+			#333333 0 60deg,
+			#d5ccc7 0 120deg,
+			#a9a29c 0 180deg
+		);
+	/* background:
+		repeating-conic-gradient(from 30deg, #0000 0 120deg, #f19c79 0 180deg) 200px
+			115.39999999999999px,
+		repeating-conic-gradient(
+			from 30deg,
+			#d4e09b 0 60deg,
+			#f6f4d2 0 120deg,
+			#cbdfbd 0 180deg
+		); */
+
+	/* background-size: 400px 231px; */
+}
+
+.confirm-pg::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: rgba(31, 30, 30, 0.141);
+	pointer-events: none;
+}
+
+.confirm-card {
+	background: rgba(255, 255, 255, 0.15);
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
+	border: 1px solid rgba(255, 255, 255, 0.075);
+}
+
+/* .confirm-card {
+	background: rgba(73, 115, 170, 0.3);
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
+	border: 1px solid rgba(73, 115, 170, 0.15);
+} */
+
+/* .confirm-card {
+	background: rgba(107, 158, 249, 0.15);
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
+	border: 1px solid rgba(107, 158, 249, 0.075);
+} */

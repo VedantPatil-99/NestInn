@@ -1,34 +1,36 @@
-<div class="container my-5">
-	<h2 class="mb-4">Confirm Your Reservation</h2>
+<% layout("/layouts/boilerplate") %>
 
-	<div class="card shadow-sm">
-		<div class="card-body">
-			<h4>
+<div class="my-4 container-fluid confirm-pg ">
+	<h2 class="pt-4 pb-2">Confirm Your Reservation</h2>
+
+	<div class="card shadow-sm confirm-card z-6 rounded-4 border border-primary-subtle" >
+		<div class="card-body p-4 h-auto ">
+			<h3 class="text-dark fw-semibold mb-3">
 				<%= hostel.title %> — ₹<%= hostel.price.toLocaleString("en-IN") %> per
 				month
-			</h4>
-			<p class="text-muted">
+			</h3>
+			<p class="text-dark fw-semibold ">
 				Stay: <%= allDetails.durationMonths %> months | Students: <%=
-				allDetails.studentsCount %> | Meal
+				allDetails.studentCount %>
 				<!-- Plan: <%# mealPlan ? "Yes" : "No" %> -->
 			</p>
 
 			<hr />
-			<h5>Price Breakdown</h5>
-			<ul class="list-group list-group-flush mb-3">
-				<li class="list-group-item d-flex justify-content-between">
+			<h5 class="mb-3">Price Breakdown</h5>
+			<ul class="list-group list-group-flush rounded-4 mb-3">
+				<li class="list-group-item d-flex justify-content-between bg-secondary-subtle">
 					Base Price × Months:
-					<span>₹<%= allDetails.basePrice.toLocaleString("en-IN") %></span>
+					<span class="fw-bold">₹<%= allDetails.basePrice.toLocaleString("en-IN") %></span>
 				</li>
 				<li class="list-group-item d-flex justify-content-between">
 					Discounted Price per Student:
-					<span
+					<span class="fw-bold"
 						>₹<%= allDetails.pricePerStudent.toLocaleString("en-IN") %></span
 					>
 				</li>
-				<li class="list-group-item d-flex justify-content-between">
+				<li class="list-group-item d-flex justify-content-between bg-secondary-subtle">
 					Subtotal (All Students):
-					<span>₹<%= allDetails.subtotal.toLocaleString("en-IN") %></span>
+					<span class="fw-bold">₹<%= allDetails.subtotal.toLocaleString("en-IN") %></span>
 				</li>
 				<%#if (mealPlan) { %>
 				<!-- <li class="list-group-item d-flex justify-content-between">
@@ -40,13 +42,13 @@
 				<%# } %>
 				<li class="list-group-item d-flex justify-content-between">
 					Security Deposit:
-					<span>₹2,000<%# 2000.toLocaleString("en-IN") %></span>
+					<span class="fw-bold">₹2,000<%# 2000.toLocaleString("en-IN") %></span>
 				</li>
 			</ul>
 
-			<div class="d-flex justify-content-between align-items-center">
-				<h5>Total Amount:</h5>
-				<h4 class="text-success">
+			<div class="d-flex justify-content-between align-items-center bg-light-subtle p-3 rounded-4">
+				<h5 class="m-0">Total Amount:</h5>
+				<h4 class="text-success fw-bold m-0">
 					₹<%= (allDetails.totalAmount + 2000).toLocaleString("en-IN") %>
 				</h4>
 			</div>
@@ -93,4 +95,5 @@
 			</form>
 		</div>
 	</div>
+	<div class="invisible" style="height: 8vh;"></div>
 </div>
