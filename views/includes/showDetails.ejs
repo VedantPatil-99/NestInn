@@ -31,7 +31,7 @@
 			<div class="host-overview-info">
 				<p class="host-name m-0">Hosted by <%= hostel.owner.username %></p>
 				<p class="host-expnc m-0 text-secondary">
-					Superhost <span class="dot text-secondary">·</span> 12 years hosting
+					Owner <span class="dot text-secondary">·</span> <%= hostel.title %>
 				</p>
 			</div>
 		</div>
@@ -130,5 +130,7 @@
 <%- include("../includes/modalBoxes/showDescM.ejs") %>
 <!-- Show Amenities Modal -->
 <%- include("../includes/modalBoxes/showAmenitiesM.ejs") %>
+<!-- Image Preview Modal -->
+<%- include("../includes/modalBoxes/previewImgM.ejs") %>
 
 <script src="../js/components/amenities.js"></script>

@@ -1,0 +1,27 @@
+<!-- Modal -->
+<div
+	class="modal modal-lg fade"
+	id="previewModal"
+	tabindex="-1"
+	aria-labelledby="exampleModalLabel"
+	aria-hidden="true"
+	data-bs-keyboard="true"
+	data-bs-toggle ="modal"
+	>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+        <% hostel.images.forEach((img, idx) => { %>
+          <div class="mb-3">
+            <img src="<%= img.url %>" class="w-100" alt="Hostel Image" />
+          </div>
+        <% }); %>
+      </div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+					Close
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

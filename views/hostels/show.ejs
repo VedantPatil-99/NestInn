@@ -9,11 +9,11 @@
 	<div class="row">
 		<!-- Title -->
 		<h3 class="my-4"><%= hostel.title %></h3>
-
+		
 		<!-- Image Carousel -->
 		<div
 			id="imageCarousel"
-			class="carousel slide shadow rounded p-0"
+			class="carousel slide shadow rounded p-0 position-relative"
 			data-bs-ride="carousel"
 		>
 			<div class="carousel-inner">
@@ -43,8 +43,18 @@
 			>
 				<span class="carousel-control-next-icon" aria-hidden="true"></span>
 			</button>
+			<button
+				class="btn btn-sm btn-dark col-auto position-absolute top-100 start-50 translate-middle"
+				data-bs-toggle="modal"
+				data-bs-target="#previewModal"
+				data-
+			>
+				<i class="fa-solid fa-images"></i>
+				Show Images
+			</button>
+			
 		</div>
-
+		
 		<!-- Hostel Details -->
 		<%- include("../includes/showDetails.ejs") %>
 
