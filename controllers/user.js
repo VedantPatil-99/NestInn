@@ -67,7 +67,7 @@ module.exports.showMyHostedHostels = async (req, res) => {
 		});
 		res.render("users/myHostedHostels", { myHostels, allSVGs });
 	} catch (err) {
-		console.log(err);
+		// console.log(err);
 		req.flash("error", "Unable to fetch your hostels.");
 		res.redirect("/hostels");
 	}

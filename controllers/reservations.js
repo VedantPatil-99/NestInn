@@ -4,7 +4,7 @@ const dayjs = require("dayjs"); // Optional helper for date math
 
 module.exports.createReservation = async (req, res) => {
 	const body = req.body;
-	console.log("Reservation body:", body);
+	// console.log("Reservation body:", body);
 	const { hostelId } = req.params;
 	const { durationMonths, students } = req.body;
 
@@ -50,10 +50,10 @@ module.exports.createReservation = async (req, res) => {
 
 // controllers/reservationController.js
 module.exports.confirmReservation = async (req, res) => {
-	console.log("Confirm Reservation Page:", req.body);
+	// console.log("Confirm Reservation Page:", req.body);
 	const reservation = new Reservation(req.body);
-	console.log("Reservation object:", reservation);
-	console.log(reservation);
+	// console.log("Reservation object:", reservation);
+	// console.log(reservation);
 	await reservation.save();
 	req.flash("success", "Reservation submitted successfully!");
 	res.redirect("/reservations/my-reservations");

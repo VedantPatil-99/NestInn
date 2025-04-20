@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			inputRoomType.value = roomType;
 			inputDuration.value = duration;
 			inputStudents.value = students;
-			console.log("Clicking submit button");
+			// console.log("Clicking submit button");
 			document.getElementById("reservationForm").submit();
 		});
 
