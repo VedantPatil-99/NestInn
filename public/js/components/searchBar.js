@@ -56,3 +56,47 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	});
 });
+document.addEventListener("DOMContentLoaded", () => {
+	const priceForm = document.getElementById("priceRangeForm");
+
+	if (priceForm) {
+		priceForm.addEventListener("submit", (e) => {
+			e.preventDefault();
+
+			const minPrice = document.getElementById("minPrice").value;
+			const maxPrice = document.getElementById("maxPrice").value;
+
+			const url = new URL(window.location.href);
+
+			if (minPrice) {
+				url.searchParams.set("minPrice", minPrice);
+			} else {
+				url.searchParams.delete("minPrice");
+			}
+
+			if (maxPrice) {
+				url.searchParams.set("maxPrice", maxPrice);
+			} else {
+				url.searchParams.delete("maxPrice");
+			}
+
+			window.location.href = url.toString();
+		});
+	}
+
+	const clearButton = document.getElementById("clearPriceFilter");
+	if (clearButton) {
+		clearButton.addEventListener("click", () => {
+			// Clear inputs
+			document.getElementById("minPrice").value = "";
+			document.getElementById("maxPrice").value = "";
+
+			// Redirect to hostel index without any price filter
+			const url = new URL(window.location.href);
+			url.searchParams.delete("minPrice");
+			url.searchParams.delete("maxPrice");
+
+			window.location.href = url.toString(); // Show all hostels
+		});
+	}
+});

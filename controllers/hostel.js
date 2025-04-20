@@ -9,7 +9,7 @@ const mapToken = process.env.MAP_TOKEN;
 const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
 module.exports.index = async (req, res) => {
-	const { city, state, college } = req.query;
+	const { city, state, college, minPrice, maxPrice } = req.query;
 
 	let filter = {};
 	if (city && state) {
@@ -21,6 +21,19 @@ module.exports.index = async (req, res) => {
 		filter = {
 			nearbyColleges: college,
 		};
+	}
+
+	if (minPrice || maxPrice) {
+		const min = parseInt(minPrice);
+		const max = parseInt(maxPrice);
+
+		if (!isNaN(min) && !isNaN(max)) {
+			filter.monthlyPrice = { $gte: min, $lte: max };
+		} else if (!isNaN(min)) {
+			filter.monthlyPrice = { $gte: min };
+		} else if (!isNaN(max)) {
+			filter.monthlyPrice = { $lte: max };
+		}
 	}
 
 	const allHostels = await Hostel.find(filter).populate("reviews");
@@ -40,6 +53,7 @@ module.exports.index = async (req, res) => {
 			});
 		}
 	});
+
 	const uniqueLocations = Array.from(uniqueLocationsMap.values());
 	uniqueLocations.unshift({ city: "None", state: "" });
 
@@ -66,11 +80,13 @@ module.exports.index = async (req, res) => {
 	res.render("hostels/index", {
 		allHostels,
 		uniqueLocations,
+		uniqueColleges,
+		allSVGs,
 		selectedCity: city,
 		selectedState: state,
-		uniqueColleges,
 		selectedCollege: college,
-		allSVGs,
+		selectedMinPrice: minPrice,
+		selectedMaxPrice: maxPrice,
 	});
 };
 

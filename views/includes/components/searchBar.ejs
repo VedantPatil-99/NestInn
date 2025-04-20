@@ -41,12 +41,19 @@
 			<button
 				type="button"
 				class="btn btn-outline-secondary rounded-pill h-100"
+				data-bs-toggle="modal"
+				data-bs-target="#searchPriceModal"
 			>
 				<div class="px-3 py-1 search-content">
 					<p class="m-0 text-black search-title">Price</p>
-					<p class="m-0 text-secondary search-subtitle">Add range</p>
+					<p class="m-0 text-secondary search-subtitle" id="selected-price">
+						<%= selectedMinPrice && selectedMaxPrice
+							? `₹${selectedMinPrice} - ₹${selectedMaxPrice}`
+							: "Add range" %>
+					</p>
 				</div>
 			</button>
+
 			<span class="border border-1 border-right py-2" id="divider"></span>
 		</div>
 
@@ -68,5 +75,8 @@
 <div class="invisible" style="height: 10vh">Spacing</div>
 
 <script src="../js/components/searchBar.js"></script>
-<%- include(".././modalBoxes/searchWhere.ejs") %> <%-
-include(".././modalBoxes/searchNearby.ejs") %>
+<%- include(".././modalBoxes/searchWhere.ejs") %> 
+<!--  -->
+<%- include(".././modalBoxes/searchNearby.ejs") %>
+<!--  -->
+<%- include(".././modalBoxes/searchPriceM.ejs") %>

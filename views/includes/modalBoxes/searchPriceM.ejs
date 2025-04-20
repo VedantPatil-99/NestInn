@@ -1,0 +1,55 @@
+<!-- Price Modal -->
+<div
+	class="modal fade"
+	id="searchPriceModal"
+	tabindex="-1"
+	aria-labelledby="priceModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Select Price Range (₹)</h5>
+				<button
+					type="button"
+					class="btn-close"
+					data-bs-dismiss="modal"
+					aria-label="Close"></button>
+			</div>
+			<form id="priceRangeForm">
+				<div class="modal-body">
+					<div class="mb-3">
+						<label for="minPrice" class="form-label">Min Price</label>
+						<input
+							type="number"
+							class="form-control"
+							id="minPrice"
+							name="minPrice"
+							min="0"
+							step="100"
+							required />
+					</div>
+					<div class="mb-3">
+						<label for="maxPrice" class="form-label">Max Price</label>
+						<input
+							type="number"
+							class="form-control"
+							id="maxPrice"
+							name="maxPrice"
+							min="0"
+							step="100"
+							required />
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button
+						type="button"
+						class="btn btn-outline-secondary"
+						id="clearPriceFilter">
+						Clear
+					</button>
+					<button type="submit" class="btn btn-success">Apply</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
