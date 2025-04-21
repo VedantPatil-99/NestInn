@@ -27,13 +27,15 @@
 	<div class="col mb-4">
 		<div class="card h-100 bg-light">
 			<!-- Image with link -->
-			<a href="/hostels/<%= hostel._id %>">
-				<img
-					src="<%= hostel.images.length ? hostel.images[0].url : '/icons/default.jpg' %>"
-					class="card-img-top"
-					alt="hostel_image"
-				/>
-			</a>
+			<div class="img-glow-wrapper">
+	<a href="/hostels/<%= hostel._id %>">
+		<img
+			src="<%= hostel.images.length ? hostel.images[0].url : '/icons/default.jpg' %>"
+			class="card-img-top glow-image"
+			alt="hostel_image"
+		/>
+	</a>
+</div>
 
 			<!-- Card Body -->
 			<div class="card-body h-auto p-0">

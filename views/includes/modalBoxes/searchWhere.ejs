@@ -19,15 +19,15 @@
 				></button>
 			</div>
 			<div class="modal-body">
-				<ul class="list-group">
+				<ul class="list-group gap-1">
 					<!-- Unique city/state list -->
 					<% uniqueLocations.forEach(loc => { %>
 					<li
-						class="list-group-item list-group-item-action location-option p-4"
+						class="list-group-item list-group-item-action location-option p-3 rounded-2 "
 						data-city="<%= loc.city %>"
 						data-state="<%= loc.state %>"
 					>
-						<span class="s-title"><%= loc.city %></span> <% if (loc.state) { %>
+						<span class="s-title fs-6"><%= loc.city %></span> <% if (loc.state) { %>
 						<small class="text-muted">(<%= loc.state %>)</small>
 						<% } %>
 					</li>

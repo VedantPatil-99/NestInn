@@ -142,6 +142,7 @@ nav {
 	border: none;
 	text-decoration: none;
 	color: #222222;
+
 	/* margin-bottom: 2rem; */
 	/* height: 24.2rem; */
 }
@@ -247,4 +248,70 @@ nav {
 	50% {
 		background-position: 100% 50%;
 	}
+}
+.img-glow-wrapper {
+	position: relative;
+	border-radius: 12px;
+	padding: 6px; /* This helps show the glow better */
+	background: transparent;
+	overflow: hidden;
+	z-index: 0;
+}
+
+.img-glow-wrapper::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: conic-gradient(from 0deg, #fe2d2d, #bf4138, #ff3636);
+	border-radius: inherit;
+	z-index: 1;
+	filter: blur(4px);
+	opacity: 0;
+	transition: opacity 0.4s ease;
+	animation: spin-glow 4s linear infinite;
+	animation-play-state: paused;
+}
+
+.glow-image {
+	position: relative;
+	width: 100%;
+	height: auto;
+	border-radius: 8px;
+	z-index: 2;
+	transition: transform 0.3s ease;
+	display: block;
+}
+
+/* When hover */
+.img-glow-wrapper:hover::before {
+	opacity: 1;
+	animation-play-state: running;
+}
+
+.img-glow-wrapper:hover .glow-image {
+	transform: scale(1.03);
+}
+
+/* Glow animation */
+@keyframes spin-glow {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.modal-content {
+	background: rgba(255, 255, 255, 0.25);
+	-webkit-backdrop-filter: blur(9px);
+	backdrop-filter: blur(9px);
+	border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.modal {
+	-webkit-backdrop-filter: blur(5px);
+	backdrop-filter: blur(5px);
 }
