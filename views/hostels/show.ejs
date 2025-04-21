@@ -8,7 +8,7 @@
 <div class="container-lg">
 	<div class="row">
 		<!-- Title -->
-		<h3 class="my-4"><%= hostel.title %> <span class="ms-2 fw-semibold fs-5 text-muted">(For <%= hostel.forWhom %>)</span></h3>
+		<h3 class="my-4"><%= hostel.title %> <span class="ms-2 fw-semibold fs-5 text-muted">(For <%= hostel.forWhom ? hostel.forWhom : "[not mentioned]" %>)</span></h3>
 		
 		<!-- Image Carousel -->
 		<div
@@ -78,7 +78,7 @@
 		<% hostel.nearbyColleges.forEach(college => { %>
 		<li class="list-group-item bg-warning-subtle fw-semibold">
 			<i class="fa-solid fa-graduation-cap text-success me-2"></i></i>
-			<%= college %>
+			<%= college ? college : "Currently not available" %>
 		</li>
 		<% }) %>
 	</ul>
