@@ -19,11 +19,11 @@
 				></button>
 			</div>
 			<div class="modal-body">
-				<ul class="list-group gap-1">
+				<ul class="list-group gap-1 rounded-4">
 					<!-- Unique city/state list -->
 					<% uniqueLocations.forEach(loc => { %>
 					<li
-						class="list-group-item list-group-item-action location-option p-3 rounded-2 "
+						class="list-group-item list-group-item-action location-option p-3 "
 						data-city="<%= loc.city %>"
 						data-state="<%= loc.state %>"
 					>

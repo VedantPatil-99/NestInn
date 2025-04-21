@@ -137,13 +137,10 @@
 
 				<div class="mb-3">
 					<label class="form-label">Nearby Colleges:</label>
-					<textarea type="text" class="form-control" rows="4" readonly disabled>
-~ <%= hostel.nearbyColleges.join('\n~ ') %></textarea
+					<pre type="text" readonly disabled>
+~ <%= hostel.nearbyColleges.join('\n~ ') %>
+					</pre
 					>
-					<input
-						type="hidden"
-						name="hostel[nearbyColleges]"
-						value="<%= hostel.nearbyColleges.join(',') %>" />
 				</div>
 
 				<!-- Save Changes Button (Triggers Modal) -->

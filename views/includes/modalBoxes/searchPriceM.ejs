@@ -9,7 +9,9 @@
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title">Select Price Range (₹)</h5>
+				<h5 class="modal-title bg-success-subtle p-2 rounded-3">
+					Select Price Range (₹)
+				</h5>
 				<button
 					type="button"
 					class="btn-close"
@@ -19,7 +21,11 @@
 			<form id="priceRangeForm" novalidate class="needs-validation">
 				<div class="modal-body">
 					<div class="mb-3">
-						<label for="minPrice" class="form-label">Min Price</label>
+						<label
+							for="minPrice"
+							class="form-label bg-info-subtle p-2 rounded-3">
+							Min Price
+						</label>
 						<input
 							type="number"
 							class="form-control"
@@ -28,13 +34,18 @@
 							value="<%= selectedMinPrice %>"
 							min="0"
 							step="100"
+							placeholder="e.g., 0"
 							required />
 						<div class="invalid-feedback">
 							Please enter a valid minimum price.
 						</div>
 					</div>
 					<div class="mb-3">
-						<label for="maxPrice" class="form-label">Max Price</label>
+						<label
+							for="maxPrice"
+							class="form-label bg-info-subtle p-2 rounded-3">
+							Max Price
+						</label>
 						<input
 							type="number"
 							class="form-control"
@@ -43,6 +54,7 @@
 							value="<%= selectedMaxPrice %>"
 							min="0"
 							step="100"
+							placeholder="e.g., 1000"
 							required />
 						<div class="invalid-feedback">
 							Please enter a valid maximum price.
@@ -50,10 +62,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button
-						type="button"
-						class="btn btn-outline-secondary"
-						id="clearPriceFilter">
+					<button type="button" class="btn btn-dark" id="clearPriceFilter">
 						Clear
 					</button>
 					<button type="submit" class="btn btn-success">Apply</button>
