@@ -27,14 +27,14 @@
 				<div id="collegeListContainer">
 					<% for (const city in groupedColleges) { %>
 						<div class="college-city-group" data-city="<%= city %>">
-							<h6 class="text-primary">
-								<i class="bi bi-geo-alt-fill"></i>
+							<h6 class="bg-info-subtle p-2 rounded-3 mb-3">
+								<i class="ms-2 fa-solid fa-map-location-dot me-2"></i>
 								<%= city %>
 							</h6>
 							<div class="list-group mb-3">
 								<% groupedColleges[city].forEach(college=> { %>
 									<label class="list-group-item">
-										<input class="form-check-input me-1 college-checkbox" type="checkbox" value="<%= college %>" />
+										<input class="form-check-input me-2 college-checkbox" type="checkbox" value="<%= college %>" />
 										<%= college %>
 									</label>
 									<% }) %>
