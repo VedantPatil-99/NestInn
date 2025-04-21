@@ -4,8 +4,7 @@
 	id="confirmModal"
 	tabindex="-1"
 	aria-labelledby="confirmModalLabel"
-	aria-hidden="true"
->
+	aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -14,10 +13,12 @@
 					type="button"
 					class="btn-close"
 					data-bs-dismiss="modal"
-					aria-label="Close"
-				></button>
+					aria-label="Close"></button>
 			</div>
-			<div class="modal-body">Are you sure you want to save these changes?</div>
+			<div class="modal-body bg-warning-subtle fw-semibold">
+				<i class="fa-solid fa-circle-question me-2" style="color: #ff0000"></i>
+				Are you sure you want to save these changes?
+			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
 					Cancel
