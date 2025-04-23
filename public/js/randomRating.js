@@ -1,6 +1,6 @@
 function getRandomData() {
 	return {
-		km: Math.floor(Math.random() * (5 - 1 + 1)) + 15, // Distance between 1 to 5 km
+		km: Math.floor(Math.random() * (5 - 1 + 1)) + 1, // Distance between 1 to 5 km
 	};
 }
 
