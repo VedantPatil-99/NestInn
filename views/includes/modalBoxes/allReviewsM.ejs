@@ -10,7 +10,7 @@
 	<div
 		class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl"
 	>
-		<div class="modal-content rounded-4">
+		<div class="modal-content rounded-4 bg-light">
 			<div class="modal-header border-0 d-block">
 				<button
 					type="button"
@@ -34,20 +34,14 @@
 						data-bs-placement="bottom"
 						data-bs-html="true"
 						data-bs-content=" 
-						<p>
 							Reviews from past guests help our community learn more about each
 							home. By default, reviews are sorted by recency.
-						</p>
-						<p>
 							Only the guest who made the reservation can leave a review, and
-							Airbnb only moderates reviews flagged for not following our
+							NestInn only moderates reviews flagged for not following our
 							policies.
-						</p>
-						<p>
 							To be eligible for a percentile ranking or guest favourite
 							label, hostels need 5 or more recent reviews. Criteria is subject
 							to change.
-						</p>
 						"
 						>Learn how reviews work
 					</a>
@@ -58,7 +52,7 @@
 						<h4>No Reviews Available.</h4>
 						<% } else { %> <% for (let review of hostel.reviews) { %>
 						<div class="card my-3 bg-light">
-							<div class="card-body h-auto pe-2">
+							<div class="card-body h-auto pe-4">
 								<div
 									class="mb-2 d-flex flex-column justify-content-between h-auto gap-2"
 								>
@@ -73,7 +67,7 @@
 												<%= review.author.username %>
 											</h6>
 											<p class="card-subtitle text-secondary mb-2 r-subtitle">
-												6 years on Airbnb
+												1 year(s) on NestInn
 											</p>
 										</div>
 									</div>
