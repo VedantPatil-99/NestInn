@@ -10,6 +10,14 @@
 	overflow: hidden;
 }
 
+.r-comment-modal {
+	display: -webkit-box;
+	line-clamp: 9;
+	-webkit-line-clamp: 9;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
 .r-comment {
 	font-size: 1rem;
 	font-weight: 460;
