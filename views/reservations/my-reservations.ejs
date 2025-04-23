@@ -25,7 +25,7 @@
 				<% reservations.forEach((r, idx) => { %>
 				<tr>
 					<td><%= idx + 1 %></td>
-					<td><%= r.hostel.name %></td>
+					<td><%= r.hostel ? r.hostel.title: "Not Availabel"%></td>
 					<td><%= r.students %></td>
 					<td><%= r.durationMonths %></td>
 					<td><%= r.totalPrice.toLocaleString("en-IN") %></td>

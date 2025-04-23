@@ -61,9 +61,11 @@ module.exports.confirmReservation = async (req, res) => {
 
 // SHOW User’s Reservations
 module.exports.showMyReservations = async (req, res) => {
+	// await Reservation.deleteMany({ user: req.user._id });
 	const reservations = await Reservation.find({ user: req.user._id }).populate(
 		"hostel",
 	);
+	// console.log(reservations);
 	res.render("reservations/my-reservations", { reservations });
 };
 

@@ -1,13 +1,14 @@
+
 <% reservations.forEach((r, idx) => { %>
 <!-- ... existing table row ... -->
 
 <!-- Modal -->
 <div class="modal fade" id="detailsModal-<%= r._id %>" tabindex="-1" aria-labelledby="detailsModalLabel-<%= r._id %>" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-scrollable">
-    <div class="modal-content">
+    <div class="modal-content bg-light">
       <div class="modal-header">
         <h5 class="modal-title" id="detailsModalLabel-<%= r._id %>">
-          <%= r.hostel.title %> - Full Details
+          <%= r.hostel ? r.hostel.title : "Not Availabel" %> - Full Details
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
