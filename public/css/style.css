@@ -221,13 +221,13 @@ nav {
 	border-radius: inherit;
 	background: linear-gradient(
 		45deg,
-		#ffff92,
-		#a3ffa3,
-		#b9e3ff,
-		#bec5ff,
-		#e4bbfb,
-		#ffa7c4,
-		#ff9b9b
+		#fcfc23,
+		#24fa24,
+		#6ac2fd,
+		#2d42f9,
+		#b336fc,
+		#f8407e,
+		#f52929
 	);
 	background-size: 400% 400%;
 	z-index: -2;
