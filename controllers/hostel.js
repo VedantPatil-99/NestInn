@@ -10,7 +10,6 @@ const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
 module.exports.index = async (req, res) => {
 	const { city, state, college, minPrice, maxPrice, forWhom } = req.query;
-
 	let filter = {};
 	if (city && state) {
 		filter = {

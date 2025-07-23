@@ -1,7 +1,10 @@
+require("./instrument");
+
 if (process.env.NODE_ENV !== "production") {
 	require("dotenv").config();
 }
 
+const Sentry = require("@sentry/node");
 const express = require("express");
 let app = express();
 
@@ -97,7 +100,8 @@ app.use(passport.session());
 
 // Middleware for flash messages & user authentication
 app.use((req, res, next) => {
-	res.locals.currUser = req.user;
+	res.locals.currUser = req.user || null;
+
 	res.locals.success = req.flash("success");
 	res.locals.error = req.flash("error");
 	next();
@@ -124,6 +128,9 @@ app.use((err, req, res, next) => {
 	let { statusCode = 500, message = "Something Went Wrong!" } = err;
 	res.status(statusCode).render("error.ejs", { message });
 });
+
+// Sentry Initialization
+Sentry.setupExpressErrorHandler(app);
 
 // Start Server
 app.listen(3000, () => {

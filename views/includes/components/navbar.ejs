@@ -113,7 +113,7 @@
 						<li>
 							<a class="dropdown-item mb-2" href="/reservations/my-reservations">My Bookings</a>
 						</li>
-						<% if (currUser) { %>
+						<% if (typeof currUser !== 'undefined' && currUser) { %>
 						<li>
 							<a class="dropdown-item mb-2" href="/my-hosted-hostels"
 								>My Hosted Spaces</a
