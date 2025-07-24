@@ -1,0 +1,44 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container py-5">
+	<div class="row justify-content-center">
+		<div class="col-md-6 col-lg-5">
+			<h3 class="mb-4 text-center">Verify OTP</h3>
+
+			<form
+				action="/verify-otp"
+				method="POST"
+				class="shadow p-4 bg-light rounded-4">
+				<div class="mb-3">
+					<label for="email" class="form-label">Email</label>
+					<input
+						type="email"
+						name="email"
+						id="email"
+						class="form-control"
+						required />
+				</div>
+
+				<div class="mb-3">
+					<label for="otp" class="form-label">OTP</label>
+					<input
+						type="text"
+						name="otp"
+						id="otp"
+						class="form-control"
+						maxlength="6"
+						required />
+				</div>
+
+				<button type="submit" class="btn btn-success w-100">Verify OTP</button>
+
+				<div class="text-center mt-3">
+					<a href="/forgot-password" class="text-decoration-none">
+						Resend OTP?
+					</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script src="/js/components/validateReset.js"></script>

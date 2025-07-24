@@ -29,6 +29,7 @@ const hostelsRouter = require("./routes/hostels.js");
 const reviewsRouter = require("./routes/reviews.js");
 const usersRouter = require("./routes/users.js");
 const reservationRoutes = require("./routes/reservations");
+const otpRoutes = require("./routes/otp");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -112,6 +113,7 @@ app.use("/hostels", hostelsRouter);
 app.use("/hostels/:id/reviews", reviewsRouter);
 app.use("/", usersRouter);
 app.use("/reservations", reservationRoutes);
+app.use("/", otpRoutes);
 
 app.use("/", (req, res) => {
 	res.redirect("/hostels");
