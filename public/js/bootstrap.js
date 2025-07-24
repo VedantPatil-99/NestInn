@@ -29,28 +29,3 @@ document.addEventListener("DOMContentLoaded", () => {
 		toast.show();
 	}
 });
-
-const popoverTriggerList = document.querySelectorAll(
-	'[data-bs-toggle="popover"]',
-);
-const popoverList = [...popoverTriggerList].map(
-	(popoverTriggerEl) => new bootstrap.Popover(popoverTriggerEl),
-);
-const popover = new bootstrap.Popover(".popover-dismiss", {
-	trigger: "focus",
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-	$(".selectpicker").selectpicker();
-
-	$("#nearbyColleges").on("changed.bs.select", function () {
-		const selectedCount = $(this).val()?.length || 0;
-
-		if (selectedCount > 4) {
-			alert("You can select up to 4 colleges only.");
-			// Remove the last selected option
-			const currentValues = $(this).val().slice(0, 4);
-			$(this).selectpicker("val", currentValues);
-		}
-	});
-});

@@ -4,6 +4,29 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>NestInn | Find & Book the Best Hostels</title>
+		<script
+			src="https://js.sentry-cdn.com/6a1873ede6954b94808fce95e6d80bb0.min.js"
+			crossorigin="anonymous"></script>
+		<script>
+			// This function will be called by the Sentry Loader Script once it's ready.
+			window.sentryOnLoad = function () {
+				Sentry.init({
+					dsn: "https://6a1873ede6954b94808fce95e6d80bb0@o4509718351052800.ingest.us.sentry.io/4509719578279936", // Your DSN here
+					// Setting this option to true will send default PII data to Sentry.
+					// For example, automatic IP address collection on events
+					sendDefaultPii: true,
+					// Integrate feedback using the asynchronous loading strategy
+					integrations: [
+						Sentry.feedbackIntegration({
+							colorScheme: "system",
+							// Other feedback options
+						}),
+					],
+					// Set debug to true to see Sentry logs in the console
+					debug: true,
+				});
+			};
+		</script>
 
 		<!-- Favicon -->
 		<link
@@ -79,6 +102,7 @@
 		</footer>
 
 		<!-- Bootstrap JS -->
+
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 			crossorigin="anonymous"></script>
