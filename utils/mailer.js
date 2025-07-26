@@ -5,7 +5,7 @@ module.exports.sendOTPEmail = async (to, otp) => {
 		service: "gmail",
 		auth: {
 			user: process.env.GMAIL_USER,
-			pass: "crulxabjjogqpugj",
+			pass: process.env.GMAIL_PASS,
 		},
 	});
 
