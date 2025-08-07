@@ -10,7 +10,7 @@ module.exports.sendOTP = async (req, res) => {
 
 	const hashedOtp = await bcrypt.hash(otp, 12);
 
-	await Otp.deleteMany({ email }); // clear previous
+	await Otp.deleteMany({ email });
 	await Otp.create({ email, hashedOtp });
 
 	await sendOTPEmail(email, otp);
@@ -34,7 +34,7 @@ module.exports.verifyOTP = async (req, res) => {
 	}
 
 	req.session.resetEmail = email;
-	await Otp.deleteMany({ email }); // remove on success
+	await Otp.deleteMany({ email });
 
 	res.redirect("/reset-password");
 };
@@ -49,7 +49,7 @@ module.exports.resetPassword = async (req, res) => {
 		return res.redirect("/signup");
 	}
 
-	await user.setPassword(password); // works because of passport-local-mongoose
+	await user.setPassword(password);
 	await user.save();
 
 	req.session.resetEmail = null;
