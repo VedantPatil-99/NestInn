@@ -85,5 +85,24 @@
 	<% } %>
 </div>
 
+<div class="container-lg border-top py-4">
+	<h4 class="mt-2">Sentiment Analysis</h4>
+	<% 
+			const totalReviews = hostel.reviews.length;
+			const positiveReviews = hostel.reviews.filter(r => r.sentiment > 0).length;
+			const negativeReviews = hostel.reviews.filter(r => r.sentiment < 0).length;
+			const neutralReviews = totalReviews - positiveReviews - negativeReviews;
+			
+			const positivePercentage = totalReviews > 0 ? (positiveReviews / totalReviews) * 100 : 0;
+			const negativePercentage = totalReviews > 0 ? (negativeReviews / totalReviews) * 100 : 0;
+			const neutralPercentage = totalReviews > 0 ? (neutralReviews / totalReviews) * 100 : 0;
+	%>
+	<p>
+			Overall, <strong><%= positivePercentage.toFixed(0) %>%</strong> of reviews are positive, 
+			<strong><%= negativePercentage.toFixed(0) %>%</strong> are negative, and 
+			<strong><%= neutralPercentage.toFixed(0) %>%</strong> are neutral.
+	</p>
+</div>
+
 <!-- JS for Map -->
 <script src="../js/components/map.js"></script>

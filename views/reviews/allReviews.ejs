@@ -29,16 +29,24 @@
 							</p>
 						</div>
 					</div>
-
-					<p
-						class="fw-semibold s-ratings d-flex justify-content-start align-items-center m-0"
-					>
+					<p class="fw-semibold s-ratings d-flex justify-content-start align-items-center m-0">
 						<span class="s-rated d-flex w-auto"><%= review.rating %></span>
 						<span class="dot px-1">·</span>
-						<span class="r-date"
-							><%= new Date(review.createdAt).toDateString() %>
-						</span>
+						<span class="r-date"><%= new Date(review.createdAt).toDateString() %></span>
+						<span class="sentiment-pill ms-3">
+							<% if (review.sentiment > 0) { %>
+									<span class="sentiment-emoji">😊</span>
+									<span class="sentiment-text fw-semibold text-success">Positive</span>
+							<% } else if (review.sentiment < 0) { %>
+									<span class="sentiment-emoji ">😞</span>
+									<span class="sentiment-text fw-semibold text-danger">Negative</span>
+							<% } else { %>
+									<span class="sentiment-emoji">😐</span>
+									<span class="sentiment-text fw-semibold text-primary">Neutral</span>
+							<% } %>
+    				</span>
 					</p>
+
 				</div>
 				<p class="card-text r-comment mb-2 mt-0"><%= review.comment %></p>
 

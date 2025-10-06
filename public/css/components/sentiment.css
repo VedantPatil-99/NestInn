@@ -1,0 +1,44 @@
+.sentiment-pill {
+	display: inline-flex;
+	align-items: center;
+	padding: 0.25rem 0.75rem;
+	border-radius: 9999px;
+	font-size: 0.8rem;
+	font-weight: 700; /* Bolder text */
+	color: #333; /* Darker text for better contrast */
+	background-image:
+		radial-gradient(
+			circle at 30% 70%,
+			rgba(173, 216, 230, 0.35),
+			transparent 60%
+		),
+		radial-gradient(
+			circle at 70% 30%,
+			rgba(255, 182, 193, 0.4),
+			transparent 60%
+		);
+	animation: pulse 2s infinite;
+	transition: transform 0.3s ease;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.sentiment-pill:hover {
+	transform: scale(1.05);
+}
+
+.sentiment-emoji {
+	margin-right: 0.5rem;
+	font-size: 1rem;
+}
+
+@keyframes pulse {
+	0% {
+		box-shadow: 0 0 0 0 rgba(167, 139, 250, 0.7);
+	}
+	70% {
+		box-shadow: 0 0 0 5px rgba(167, 139, 250, 0);
+	}
+	100% {
+		box-shadow: 0 0 0 0 rgba(167, 139, 250, 0);
+	}
+}

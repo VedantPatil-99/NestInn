@@ -88,15 +88,14 @@
 									<%= review.comment %>
 								</p>
 
-								<div class="row row-cols-lg-3">
-									<a href="#" class="card-link r-link link-dark">Show More</a>
+								<div class="row row-cols-lg-3 ">
 									<% if (currUser) { %>
 									<form
 										action="/hostels/<%= hostel._id %>/reviews/<%= review._id %>?_method=DELETE"
 										method="post"
 										class="m-0 p-0"
 									>
-										<button type="submit" class="btn btn-dark btn-sm">
+										<button type="submit" class="btn btn-dark btn-sm ms-3">
 											Delete
 										</button>
 									</form>

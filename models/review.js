@@ -28,6 +28,13 @@ const reviewSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: "Hostel",
 	},
+	sentiment: {
+		type: Number,
+		default: 0,
+	},
 });
 
-module.exports = mongoose.model("Review", reviewSchema);
+module.exports = mongoose.model(
+	"Review",
+	reviewSchema,
+);

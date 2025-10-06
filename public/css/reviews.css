@@ -12,8 +12,8 @@
 
 .r-comment-modal {
 	display: -webkit-box;
-	line-clamp: 9;
-	-webkit-line-clamp: 9;
+	line-clamp: 20;
+	-webkit-line-clamp: 20;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 }

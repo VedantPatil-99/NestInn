@@ -1,8 +1,15 @@
 const Hostel = require("../models/hostel");
 const Review = require("../models/review");
+const Sentiment = require("sentiment");
+const sentiment = new Sentiment();
 
-module.exports.createReview = async (req, res) => {
-	let hostel = await Hostel.findById(req.params.id);
+module.exports.createReview = async (
+	req,
+	res,
+) => {
+	let hostel = await Hostel.findById(
+		req.params.id,
+	);
 	if (!hostel) {
 		req.flash("error", "Hostel not found!");
 		return res.redirect("/hostels");
@@ -10,21 +17,38 @@ module.exports.createReview = async (req, res) => {
 
 	let newReview = new Review(req.body.review);
 	newReview.author = req.user._id;
+
+	const result = sentiment.analyze(
+		newReview.comment,
+	);
+	newReview.sentiment = result.score;
+
 	hostel.reviews.push(newReview);
 
 	await newReview.save();
 	await hostel.save();
 
-	req.flash("success", "Review added successfully!");
+	req.flash(
+		"success",
+		"Review added successfully!",
+	);
 	res.redirect(`/hostels/${req.params.id}`);
 };
 
-module.exports.destroyReview = async (req, res) => {
+module.exports.destroyReview = async (
+	req,
+	res,
+) => {
 	let { id, reviewId } = req.params;
 
-	await Hostel.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+	await Hostel.findByIdAndUpdate(id, {
+		$pull: { reviews: reviewId },
+	});
 	await Review.findByIdAndDelete(reviewId);
 
-	req.flash("success", "Review deleted successfully!");
+	req.flash(
+		"success",
+		"Review deleted successfully!",
+	);
 	res.redirect(`/hostels/${id}`);
 };

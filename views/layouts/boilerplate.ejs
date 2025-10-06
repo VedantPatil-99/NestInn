@@ -2,8 +2,12 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>NestInn | Find & Book the Best Hostels</title>
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>
+			NestInn | Find & Book the Best Hostels
+		</title>
 		<script
 			src="https://js.sentry-cdn.com/6a1873ede6954b94808fce95e6d80bb0.min.js"
 			crossorigin="anonymous"></script>
@@ -36,8 +40,13 @@
 			type="image/x-icon" />
 
 		<!-- Preconnect for better performance -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com" />
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com"
+			crossorigin />
 
 		<!-- Google Font -->
 		<link
@@ -67,14 +76,31 @@
 			href="https://api.mapbox.com/mapbox-gl-js/v3.9.2/mapbox-gl.css" />
 
 		<!-- Combined Main CSS File -->
-		<link rel="stylesheet" href="/css/style.css" />
+		<link
+			rel="stylesheet"
+			href="/css/style.css" />
 		<!-- <link rel="stylesheet" href="/css/filters.css" /> -->
-		<link rel="stylesheet" href="/css/showDetails.css" />
-		<link rel="stylesheet" href="/css/reviews.css" />
-		<link rel="stylesheet" href="/css/components/rating.css" />
-		<link rel="stylesheet" href="/css/components/map.css" />
-		<link rel="stylesheet" href="/css/components/footer.css" />
-		<link rel="stylesheet" href="/css/components/confirmPage.css" />
+		<link
+			rel="stylesheet"
+			href="/css/showDetails.css" />
+		<link
+			rel="stylesheet"
+			href="/css/reviews.css" />
+		<link
+			rel="stylesheet"
+			href="/css/components/rating.css" />
+		<link
+			rel="stylesheet"
+			href="/css/components/map.css" />
+		<link
+			rel="stylesheet"
+			href="/css/components/footer.css" />
+		<link
+			rel="stylesheet"
+			href="/css/components/confirmPage.css" />
+		<link
+			rel="stylesheet"
+			href="/css/components/sentiment.css" />
 		<!-- <link rel="stylesheet" href="/css/main.css" /> -->
 
 		<!-- Mapbox Scripts -->
@@ -85,20 +111,28 @@
 	<body class="bg-light">
 		<!-- Navbar (Sticky Top) -->
 		<header class="sticky-top">
-			<%- include('../includes/components/navbar.ejs') %>
+			<%-
+			include('../includes/components/navbar.ejs')
+			%>
 		</header>
 
 		<!-- Main Content -->
-		<main class="container-fluid flex-fill"><%- body %></main>
+		<main class="container-fluid flex-fill">
+			<%- body %>
+		</main>
 
 		<!-- Flash Messages -->
 		<div class="container-fluid fixed-bottom">
-			<%- include('../includes/components/flash.ejs') %>
+			<%-
+			include('../includes/components/flash.ejs')
+			%>
 		</div>
 
 		<!-- Footer -->
 		<footer class="container-fluid">
-			<%- include('../includes/components/footer.ejs') %>
+			<%-
+			include('../includes/components/footer.ejs')
+			%>
 		</footer>
 
 		<!-- Bootstrap JS -->
