@@ -154,7 +154,7 @@ nav {
 
 .card .card-img-top {
 	border-radius: 0.8rem;
-	height: 19rem;
+	height: 15.5rem;
 	object-fit: cover;
 	vertical-align: middle;
 }
@@ -231,7 +231,8 @@ nav {
 	);
 	background-size: 400% 400%;
 	z-index: -2;
-	animation: glow-animation 4s ease-in-out infinite;
+	animation: glow-animation 4s ease-in-out
+		infinite;
 	opacity: 0.25;
 }
 
@@ -265,7 +266,12 @@ nav {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: conic-gradient(from 0deg, #fe2d2d, #bf4138, #ff3636);
+	background: conic-gradient(
+		from 0deg,
+		#fe2d2d,
+		#bf4138,
+		#ff3636
+	);
 	border-radius: inherit;
 	z-index: 1;
 	filter: blur(4px);
