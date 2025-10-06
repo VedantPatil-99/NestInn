@@ -3,10 +3,60 @@
 	const svgData = <%- JSON.stringify(allSVGs) %>;
 </script>
 
-<!-- Search Bar -->
 <%- include('../includes/components/searchBar.ejs') %>
 
-<!-- Hostels Grid -->
+<% if (locals.recommendedHostels && recommendedHostels.length > 0) { %>
+	<h3 class="mt-4">Recommended for You</h3>
+	<div
+		class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1"
+	>
+		<% for (let hostel of recommendedHostels) { %>
+		<div class="col mb-4">
+			<div class="card h-100 bg-light">
+				<div class="img-glow-wrapper">
+					<a href="/hostels/<%= hostel._id %>">
+						<img
+							src="<%= hostel.images.length ? hostel.images[0].url : '/icons/default.jpg' %>"
+							class="card-img-top glow-image"
+							alt="hostel_image"
+						/>
+					</a>
+				</div>
+
+				<div class="card-body h-auto p-1">
+					<p class="card-text">
+						<span class="card-title">
+							<%= hostel.address.street %>, <%= hostel.address.city %>, <%=
+							hostel.address.country %>
+						</span>
+						<br />
+						<span class="card-text">
+							<span class="random-km text-secondary">Loading km...</span><br />
+							<span class="fw-bold d-flex align-items-center"
+								><%= hostel.avgRating ? hostel.avgRating.toFixed(1) : "0.0" %>
+								&nbsp;<%- allSVGs.largeStar %>
+								<span class="text-secondary ps-1"
+									>(<%= hostel.reviews.length %> reviews)</span
+								>
+							</span>
+						</span>
+					</p>
+
+					<p class="oldPrice pt-2">
+						<b>&#8377;</b>&nbsp;
+						<span class="price"
+							><%= hostel.price.toLocaleString("en-IN") %></span
+						>
+						<span> / month</span>
+					</p>
+				</div>
+			</div>
+		</div>
+		<% } %>
+	</div>
+	<hr />
+<% } %>
+
 <% if (allHostels.length === 0) { %>
 	<div class="text-center text-secondary animate__animated animate__fadeIn " style="height: 75vh;">
 		<div>
@@ -26,7 +76,6 @@
 	<% for (let hostel of allHostels) { %>
 	<div class="col mb-4">
 		<div class="card h-100 bg-light">
-			<!-- Image with link -->
 			<div class="img-glow-wrapper">
 	<a href="/hostels/<%= hostel._id %>">
 		<img
@@ -37,7 +86,6 @@
 	</a>
 </div>
 
-			<!-- Card Body -->
 			<div class="card-body h-auto p-1" >
 				<p class="card-text">
 					<span class="card-title">
@@ -47,8 +95,9 @@
 					<span class="card-text">
 						<span class="random-km text-secondary">Loading km...</span><br />
 						<span class="fw-bold d-flex align-items-center"
-							><%= hostel.avgRating ? hostel.avgRating.toFixed(1): "0.0" %>
-							%>&nbsp;<%- allSVGs.largeStar %>
+							><%= hostel.avgRating ?
+							hostel.avgRating.toFixed(1): "0.0" %>
+							&nbsp;<%- allSVGs.largeStar %>
 							<span class="text-secondary ps-1"
 								>(<%= hostel.reviews.length %> reviews)</span
 							>
@@ -56,7 +105,6 @@
 					</span>
 				</p>
 
-				<!-- Price -->
 				<p class="oldPrice pt-2">
 					<b>&#8377;</b>&nbsp;
 					<span class="price"><%= hostel.price.toLocaleString("en-IN") %></span>
@@ -68,5 +116,4 @@
 	<% } %>
 </div>
 <% } %>
-<!-- Scripts -->
 <script src="../js/randomRating.js"></script>
