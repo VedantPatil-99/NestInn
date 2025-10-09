@@ -1,0 +1,61 @@
+{
+  "name": "nestinn-server",
+  "version": "1.0.0",
+  "description": "NestInn Backend API - Modern hostel & food point booking system",
+  "main": "src/app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "test": "jest",
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint src/**/*.js --fix"
+  },
+  "keywords": [
+    "nestinn",
+    "nodejs",
+    "express",
+    "mongodb",
+    "api",
+    "hostel",
+    "booking"
+  ],
+  "author": "Vedant Patil",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^8.0.3",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "morgan": "^1.10.0",
+    "compression": "^1.7.4",
+    "express-rate-limit": "^7.1.5",
+    "express-validator": "^7.0.1",
+    "multer": "^1.4.5-lts.1",
+    "cloudinary": "^1.41.3",
+    "multer-storage-cloudinary": "^4.0.0",
+    "nodemailer": "^6.9.7",
+    "dayjs": "^1.11.10",
+    "dotenv": "^16.3.1",
+    "@mapbox/mapbox-sdk": "^0.16.1",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-jwt": "^4.0.1",
+    "sentiment": "^5.0.2",
+    "joi": "^17.11.0",
+    "cookie-parser": "^1.4.6",
+    "@sentry/node": "^7.81.1",
+    "@sentry/profiling-node": "^1.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "eslint": "^8.55.0",
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

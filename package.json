@@ -1,64 +1,48 @@
 {
-  "engines": {
-    "node": "^22.12.0"
-  },
   "name": "nestinn",
-  "version": "1.0.0",
-  "description": "\"NestInn: A hostel & food point hub.\"",
-  "main": "index.js",
+  "version": "2.0.0",
+  "description": "NestInn - Modern hostel & food point booking system with React frontend and Node.js backend",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org vedant-patil --project node-express . && sentry-cli sourcemaps upload --org vedant-patil --project node-express ."
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && npm run dev",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "cd client && npm run build",
+    "build:server": "cd server && npm run build",
+    "start": "cd server && npm start",
+    "install:all": "npm install && cd client && npm install && cd ../server && npm install",
+    "clean": "rm -rf node_modules client/node_modules server/node_modules client/dist server/dist",
+    "lint": "npm run lint:client && npm run lint:server",
+    "lint:client": "cd client && npm run lint",
+    "lint:server": "cd server && npm run lint",
+    "test": "npm run test:client && npm run test:server",
+    "test:client": "cd client && npm test",
+    "test:server": "cd server && npm test"
   },
   "keywords": [
-    "NestInn",
+    "nestinn",
+    "react",
     "nodejs",
     "express",
     "mongodb",
+    "vite",
+    "tailwindcss",
     "fullstack",
-    "backend",
-    "frontend",
-    "api",
-    "webapp",
-    "website",
     "hostel",
-    "food-point",
     "booking"
   ],
-  "author": "\"Vedant Patil\"",
+  "author": "Vedant Patil",
   "license": "ISC",
-  "dependencies": {
-    "@mapbox/mapbox-sdk": "^0.16.1",
-    "@sentry/browser": "^9.40.0",
-    "@sentry/cli": "^2.50.2",
-    "@sentry/node": "^9.40.0",
-    "@sentry/profiling-node": "^9.40.0",
-    "bcryptjs": "^3.0.2",
-    "cloudinary": "^1.41.3",
-    "connect-flash": "^0.1.1",
-    "connect-mongo": "^5.1.0",
-    "cookie-parser": "^1.4.7",
-    "dayjs": "^1.11.13",
-    "dotenv": "^16.4.7",
-    "ejs": "^3.1.10",
-    "ejs-mate": "^4.0.0",
-    "express": "^4.21.2",
-    "express-session": "^1.18.1",
-    "googleapis": "^154.0.0",
-    "joi": "^17.13.3",
-    "method-override": "^3.0.0",
-    "mongoose": "^8.10.1",
-    "multer": "^1.4.5-lts.1",
-    "multer-storage-cloudinary": "^4.0.0",
-    "nodemailer": "^7.0.5",
-    "passport": "^0.7.0",
-    "passport-google-oauth20": "^2.0.0",
-    "passport-local": "^1.0.0",
-    "passport-local-mongoose": "^8.0.0",
-    "sentiment": "^5.0.2"
-  },
   "devDependencies": {
-    "prettier": "^3.5.3",
-    "prettier-plugin-ejs": "^1.0.3"
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   }
 }
