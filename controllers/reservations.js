@@ -4,13 +4,11 @@ const dayjs = require("dayjs"); // Optional helper for date math
 const Razorpay = require("razorpay");
 const crypto = require("crypto");
 
-// Instantiate Razorpay (add keys to your .env file)
 const razorpay = new Razorpay({
 	key_id: process.env.RAZORPAY_KEY_ID,
 	key_secret: process.env.RAZORPAY_KEY_SECRET,
 });
 
-// This function renders the confirmation page (original createReservation)
 module.exports.createReservation = async (
 	req,
 	res,
@@ -65,7 +63,7 @@ module.exports.createReservation = async (
 	});
 };
 
-// This function creates the pending reservation and the Razorpay order
+// pending reservation and the Razorpay order
 module.exports.confirmReservation = async (
 	req,
 	res,
@@ -73,15 +71,14 @@ module.exports.confirmReservation = async (
 	const reservation = new Reservation(req.body);
 
 	try {
-		// 1. Create Razorpay Order
 		const options = {
 			// Add 2000 for the security deposit
 			amount:
 				(reservation.totalPrice + 2000) * 100, // Amount in paise
-			// reservation.totalPrice * 100, // Amount in paise
+			// reservation.totalPrice * 100,
 
 			currency: "INR",
-			receipt: reservation._id.toString(), // A unique receipt ID
+			receipt: reservation._id.toString(),
 			notes: {
 				hostel_id: reservation.hostel.toString(),
 				user_id: reservation.user.toString(),
@@ -90,12 +87,9 @@ module.exports.confirmReservation = async (
 
 		const order =
 			await razorpay.orders.create(options);
-
-		// 2. Save the order_id to the reservation
 		reservation.razorpay_order_id = order.id;
 		await reservation.save();
 
-		// 3. Render a new payment page, passing order details
 		const hostel = await Hostel.findById(
 			reservation.hostel,
 		);
@@ -144,7 +138,7 @@ module.exports.cancelReservation = async (
 	res.redirect("/reservations/my-reservations");
 };
 
-// Optional: Edit reservation
+// Edit reservation
 module.exports.renderEditForm = async (
 	req,
 	res,
