@@ -13,7 +13,7 @@
 			<% for (let hostel of recommendedHostels) { %>
 			<div class="col mb-4">
 				<div class="card rounded-4 h-100 bg-light">
-					<div class="img-glow-wrapper h-75">
+					<div class="img-glow-wrapper mh-75">
 						<a href="/hostels/<%= hostel._id %>">
 							<img
 								src="<%= hostel.images.length ? hostel.images[0].url : '/icons/default.jpg' %>"
@@ -26,8 +26,7 @@
 					<div class="card-body pt-1 h-auto px-3">
 						<p class="card-text mt-0">
 							<span class="card-title">
-								<%= hostel.address.street %>, <%= hostel.address.city %>, <%=
-								hostel.address.country %>
+								<%= hostel.address.street %>, <%= hostel.address.city %>
 							</span>
 							<br />
 							<span class="card-text">
@@ -90,7 +89,7 @@
 			<div class="card-body h-auto p-1" >
 				<p class="card-text">
 					<span class="card-title">
-						<%= hostel.address.street %>, <%= hostel.address.city %>, <%= hostel.address.country %>
+						<%= hostel.address.street %>, <%= hostel.address.city %>
 					</span>
 					<br />
 					<span class="card-text">
