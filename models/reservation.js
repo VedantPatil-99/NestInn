@@ -2,8 +2,16 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const reservationSchema = new Schema({
-	user: { type: Schema.Types.ObjectId, ref: "User", required: true },
-	hostel: { type: Schema.Types.ObjectId, ref: "Hostel", required: true },
+	user: {
+		type: Schema.Types.ObjectId,
+		ref: "User",
+		required: true,
+	},
+	hostel: {
+		type: Schema.Types.ObjectId,
+		ref: "Hostel",
+		required: true,
+	},
 
 	durationMonths: {
 		type: Number,
@@ -27,16 +35,25 @@ const reservationSchema = new Schema({
 		default: "pending",
 	},
 
+	razorpay_order_id: {
+		type: String,
+	},
+	razorpay_payment_id: {
+		type: String,
+	},
+	razorpay_signature: {
+		type: String,
+	},
+
 	startDate: { type: Date, required: true },
 
 	endDate: { type: Date, required: true },
 
-	// addOns: {
-	// 	mealPlan: { type: Boolean, default: false },
-	// },
-
 	createdAt: { type: Date, default: Date.now },
 });
 
-const Reservation = mongoose.model("Reservation", reservationSchema);
+const Reservation = mongoose.model(
+	"Reservation",
+	reservationSchema,
+);
 module.exports = Reservation;
