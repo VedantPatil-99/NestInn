@@ -1,0 +1,103 @@
+<% layout("/layouts/boilerplate") %>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<div class="container my-5">
+	<div class="row">
+		<div class="col-md-6 offset-md-3">
+			<h3 class="mb-3">Complete Your Payment</h3>
+			<div class="card shadow">
+				<div class="card-body h-100">
+					<h5 class="card-title py-1">
+						<%= hostel.title %>
+					</h5>
+					<p>
+						<strong>Duration:</strong>
+						<%= reservation.durationMonths %>
+						months
+					</p>
+					<p>
+						<strong>Students:</strong>
+						<%= reservation.students %>
+					</p>
+					<h4 class="card-text mb-4">
+						Total Amount: ₹<%=
+						reservation.totalPrice.toLocaleString("en-IN")
+						%>
+					</h4>
+					<button
+						id="pay-button"
+						class="btn btn-success w-100">
+						Pay Now
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	document.getElementById("pay-button").onclick =
+		function (e) {
+			const options = {
+				key: "<%= razorpayKeyId %>", // Your public key
+				amount: "<%= order.amount %>", // Amount in paise
+				currency: "INR",
+				name: "NestInn",
+				description: "Hostel Reservation Payment",
+				image: "/icons/NestInn_logo.jpg", // Your site logo
+				order_id: "<%= order.id %>",
+				handler: function (response) {
+					// This function runs on payment success
+					// We will POST this information to our server for verification
+					const form =
+						document.createElement("form");
+					form.method = "POST";
+					form.action = `/reservations/<%= reservation._id %>/verify`;
+
+					const fields = {
+						razorpay_payment_id:
+							response.razorpay_payment_id,
+						razorpay_order_id:
+							response.razorpay_order_id,
+						razorpay_signature:
+							response.razorpay_signature,
+					};
+
+					for (let key in fields) {
+						const input =
+							document.createElement("input");
+						input.type = "hidden";
+						input.name = key;
+						input.value = fields[key];
+						form.appendChild(input);
+					}
+					document.body.appendChild(form);
+					form.submit();
+				},
+				prefill: {
+					name: "<%= currUser.username %>",
+					email: "<%= currUser.email %>",
+				},
+				notes: {
+					address: "NestInn Student Housing",
+				},
+				theme: {
+					color: "#3399cc",
+				},
+			};
+			const rzp = new Razorpay(options);
+			rzp.on(
+				"payment.failed",
+				function (response) {
+					alert(
+						"Payment Failed: " +
+							response.error.description,
+					);
+					window.location.href =
+						"/reservations/my-reservations";
+				},
+			);
+			rzp.open();
+			e.preventDefault();
+		};
+</script>

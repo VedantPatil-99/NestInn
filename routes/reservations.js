@@ -22,6 +22,12 @@ router.post(
 	reservationController.confirmReservation,
 );
 
+router.post(
+	"/:reservationId/verify",
+	isLoggedIn,
+	reservationController.verifyPayment,
+);
+
 // View User Reservations
 router.get(
 	"/my-reservations",
