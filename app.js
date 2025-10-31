@@ -93,13 +93,6 @@ passport.use(
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// app.use(
-// 	session({
-// 		secret: process.env.SECRET,
-// 		resave: false,
-// 		saveUninitialized: false,
-// 	}),
-// );
 // Middleware for flash messages & user authentication
 app.use((req, res, next) => {
 	res.locals.currUser = req.user || null;
@@ -109,7 +102,6 @@ app.use((req, res, next) => {
 	next();
 });
 
-// Routes
 app.use("/hostels", hostelsRouter);
 app.use("/hostels/:id/reviews", reviewsRouter);
 app.use("/", usersRouter);
