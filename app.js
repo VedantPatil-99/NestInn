@@ -109,15 +109,16 @@ app.use((req, res, next) => {
 	next();
 });
 
-app.use("/", (req, res) => {
-	res.redirect("/hostels");
-});
 // Routes
 app.use("/hostels", hostelsRouter);
 app.use("/hostels/:id/reviews", reviewsRouter);
 app.use("/", usersRouter);
 app.use("/reservations", reservationRoutes);
 app.use("/", otpRoutes);
+
+app.use("/", (req, res) => {
+	res.redirect("/hostels");
+});
 
 // 404 Error Handler
 app.all("*", (req, res, next) => {

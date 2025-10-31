@@ -9,9 +9,9 @@ passport.use(
 			clientID: process.env.GOOGLE_CLIENT_ID,
 			clientSecret:
 				process.env.GOOGLE_CLIENT_SECRET,
-			callbackURL:
-				"https://nestinn-ly09.onrender.com/auth/google/callback",
-			// callbackURL: "/auth/google/callback",
+			// callbackURL:
+			// "https://nestinn-ly09.onrender.com/auth/google/callback",
+			callbackURL: "/auth/google/callback",
 		},
 		async (
 			accessToken,
