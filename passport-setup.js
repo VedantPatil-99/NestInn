@@ -1,19 +1,28 @@
 const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const GoogleStrategy =
+	require("passport-google-oauth20").Strategy;
 const User = require("./models/user");
 
 passport.use(
 	new GoogleStrategy(
 		{
 			clientID: process.env.GOOGLE_CLIENT_ID,
-			clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+			clientSecret:
+				process.env.GOOGLE_CLIENT_SECRET,
 			callbackURL:
-				"https://nestinn-ly09.onrender.com/hostels/auth/google/callback",
+				"https://nestinn-ly09.onrender.com/auth/google/callback",
 			// callbackURL: "/auth/google/callback",
 		},
-		async (accessToken, refreshToken, profile, done) => {
+		async (
+			accessToken,
+			refreshToken,
+			profile,
+			done,
+		) => {
 			try {
-				const existingUser = await User.findOne({ googleId: profile.id });
+				const existingUser = await User.findOne({
+					googleId: profile.id,
+				});
 				if (existingUser) {
 					return done(null, existingUser);
 				}

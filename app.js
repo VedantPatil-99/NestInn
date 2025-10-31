@@ -36,10 +36,13 @@ app.set("views", path.join(__dirname, "views"));
 app.use(methodOverride("_method"));
 app.use(express.urlencoded({ extended: true }));
 app.engine("ejs", ejsMate);
-app.use(express.static(path.join(__dirname, "public")));
+app.use(
+	express.static(path.join(__dirname, "public")),
+);
 
 // MongoDB Connection
-const MONGO_URL = "mongodb://127.0.0.1:27017/nestinn";
+const MONGO_URL =
+	"mongodb://127.0.0.1:27017/nestinn";
 const ATLAS_DB_URL = process.env.ATLAS_DB_URL;
 
 main()
@@ -83,7 +86,9 @@ app.use(flash());
 // Passport Authentication
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
+passport.use(
+	new LocalStrategy(User.authenticate()),
+);
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -95,10 +100,6 @@ passport.deserializeUser(User.deserializeUser());
 // 		saveUninitialized: false,
 // 	}),
 // );
-
-app.use(passport.initialize());
-app.use(passport.session());
-
 // Middleware for flash messages & user authentication
 app.use((req, res, next) => {
 	res.locals.currUser = req.user || null;
@@ -127,8 +128,13 @@ app.all("*", (req, res, next) => {
 // Global Error Handler
 app.use((err, req, res, next) => {
 	console.log(err);
-	let { statusCode = 500, message = "Something Went Wrong!" } = err;
-	res.status(statusCode).render("error.ejs", { message });
+	let {
+		statusCode = 500,
+		message = "Something Went Wrong!",
+	} = err;
+	res
+		.status(statusCode)
+		.render("error.ejs", { message });
 });
 
 // Sentry Initialization
