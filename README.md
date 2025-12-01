@@ -165,5 +165,5 @@ This project is licensed under the **ISC License**. See the [package.json](packa
 
 If you have any questions or suggestions, feel free to reach out:
 
-* **Email:** vedantpatil.99@gmail.com (Assuming based on username, please update if different)
+* **Email:** vedantpatil9977@gmail.com
 * **GitHub:** [vedantpatil-99](https://github.com/vedantpatil-99)
